@@ -2,11 +2,7 @@ import { connect } from 'react-redux';
 import AddTodoForm from '../components/AddTodoForm/AddTodoForm';
 import * as actions from '../actions';
 
-const mapStateToProps = (state) => {
-  return {
-    state
-  }
-}
+const mapStateToProps = state => { return {state} }
 
 const mapDispatchToProps = (dispatch) => {
   return {

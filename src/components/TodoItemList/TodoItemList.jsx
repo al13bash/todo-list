@@ -11,7 +11,10 @@ class TodoItemList extends React.Component {
     return(
       <div>
         {this.props.state.map((todo, index) =>
-          <TodoItem key={ index } todo={ todo } toggleTodo={ this.props.toggleTodo }></TodoItem>
+          <TodoItem
+            key={ index }
+            todo={ todo }
+            toggleTodo={ this.props.toggleTodo }></TodoItem>
         )}
       </div>
     );
