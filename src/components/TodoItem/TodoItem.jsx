@@ -8,6 +8,11 @@ import './TodoItem.css';
 class TodoItem extends React.Component {
   constructor(props) {
     super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+    this.props.toggleTodo(parseInt(e.target.id));
   }
 
   render() {
@@ -33,36 +38,14 @@ class TodoItem extends React.Component {
           style={style.checkbox}
           label={this.props.todo.title}
           checked={this.props.todo.done}
-          onCheck={this.props.toggleCheckbox}
+          onCheck={this.handleClick}
         />
         <IconButton>
           <ImageEdit />
         </IconButton>
       </Paper>
-      // <TableRow {...otherProps} className="todo-list_row">
-      //   {otherProps.children[0]}
-      //   <TableRowColumn>{element.title}</TableRowColumn>
-      //   <TableRowColumn width={30}>
-      //     <IconButton>
-      //       <ImageEdit />
-      //     </IconButton>
-      //   </TableRowColumn>
-      // </TableRow>
     );
   }
 }
-
-/* <Card className="todo-item">
-  <Checkbox className="todo-item__checkbox"/>
-  <CardHeader>
-    {this.props.title}
-  </CardHeader>
-  <IconButton
-    className="todo-item__edit"
-    tooltip="Edit"
-    tooltipPosition="top-center">
-    <ImageEdit />
-  </IconButton>
-</Card> */
 
 export default TodoItem;
