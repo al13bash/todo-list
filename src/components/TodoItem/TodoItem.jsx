@@ -18,8 +18,8 @@ class TodoItem extends React.Component {
   render() {
     const style = {
       paper: {
-        height: 65,
-        width: 600,
+        height: 50,
+        width: 450,
         margin: "auto",
         display: "flex",
         alignItems:"center",

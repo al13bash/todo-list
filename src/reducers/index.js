@@ -1,16 +1,16 @@
 let initialState = [
   {
-    id: 1,
+    id: 0,
     title: "1st sdjfh",
     done: true
   },
   {
-    id: 2,
+    id: 1,
     title: "2nd sdhjfk",
     done: false
   },
   {
-    id: 3,
+    id: 2,
     title: "djsk sdhkf",
     done: true
   }
@@ -25,9 +25,17 @@ const todoApp = (state = initialState, action) => {
           return todo;
         }
         return Object.assign({}, todo, { done: !todo.done});
-      })
+      });
+    case 'ADD_TODO':
+      return [...state, 
+        {
+          id: action.id,
+          title: action.text,
+          done: false
+        }
+      ];
     default:
-      return state
+      return state;
   }
 }
 
