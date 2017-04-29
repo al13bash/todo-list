@@ -1,0 +1,38 @@
+import React from 'react';
+import Category from '../Category/Category';
+
+class CategoryList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.createNode = this.createNode.bind(this);
+  }
+
+  createNode(elem) {
+    const style = {
+      marginLeft: 25,
+      marginTop: 3
+    }
+
+    return(
+      <div key={elem.id} style={style}>
+        <Category elem={elem}/>
+        { elem.children.map((child) => this.createNode(child)) }
+      </div>
+    );
+  }
+
+  render() {
+    return(
+      <div>
+        {
+          this.props.categories.map((elem, index) => {
+            return(this.createNode(elem));
+          })
+        }
+      </div>
+    );
+  }
+}
+
+export default CategoryList;

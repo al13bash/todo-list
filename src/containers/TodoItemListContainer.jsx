@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import TodoItemList from '../components/TodoItemList/TodoItemList';
 import * as actions from '../actions';
 
-const mapStateToProps = state => { return {state} }
+const mapStateToProps = state => { return { todos: state.todos} }
 
 const mapDispatchToProps = (dispatch) => {
   return {

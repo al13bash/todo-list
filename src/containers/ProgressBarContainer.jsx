@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
 import ProgressBar from '../components/ProgressBar';
-import * as actions from '../actions';
 
-const mapStateToProps = state => { return {state} }
+const mapStateToProps = state => { return { todos: state.todos} }
 
 const ProgressBarContainer = connect(mapStateToProps)(ProgressBar);
 
