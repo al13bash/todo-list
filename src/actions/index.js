@@ -1,4 +1,5 @@
 let todoId = 3;
+let categoryId = 5;
 
 export const addTodo = (text) => {
   return {
@@ -12,5 +13,15 @@ export const toggleTodo = (id) => {
   return {
     type: 'TOGGLE_TODO',
     id
+  }
+}
+
+export const addCategory = (name, parentId, isRoot) => {
+  return {
+    type: 'ADD_CATEGORY',
+    id: categoryId++,
+    name,
+    parentId,
+    isRoot
   }
 }

@@ -1,6 +1,8 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
-import Checkbox from 'material-ui/Checkbox';
+import IconButton from 'material-ui/IconButton';
+import ActionDelete from 'material-ui/svg-icons/action/delete';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 class Category extends React.Component {
   constructor(props) {
@@ -10,23 +12,30 @@ class Category extends React.Component {
   render() {
     const style = {
       paper: {
-        height: 25,
-        width: 200,
+        height: 40,
+        width: 260,
         margin: "auto",
         display: "flex",
         alignItems:"center",
         justifyContent: "space-between",
-        padding: 15,
-        fontSize: 14
+        padding: 15
+      },
+      button: {
+        padding: 0
       }
     }
 
     return(
       <Paper style={style.paper} zDepth={1} >
-        <Checkbox
-          id={this.props.elem.id}
-          label={this.props.elem.name}
-        />
+        <div>{this.props.elem.name}</div>
+        <div>
+          <IconButton>
+            <ActionDelete />
+          </IconButton>
+          <IconButton style={style.button}>
+            <ContentAdd />
+          </IconButton>
+        </div>
       </Paper>
     );
   }

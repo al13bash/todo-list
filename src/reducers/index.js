@@ -1,3 +1,11 @@
+const getNewCategory = (action) => {
+  return {
+    id: action.id,
+    name: action.name,
+    children: []
+  }
+}
+
 const todo = (todo = {}, action) => {
   switch (action.type) {
     case 'TOGGLE_TODO':
@@ -15,7 +23,13 @@ const todo = (todo = {}, action) => {
 }
 
 const category = (category = {}, action) => {
-
+  switch(action.type) {
+    case 'ADD_CATEGORY':
+      if (category.id !== action.parentId) {
+        return category
+      }
+      category.children.concat(getNewCategory(action));
+  }
 }
 
 const todoApp = (state = initialState, action) => {
@@ -30,6 +44,18 @@ const todoApp = (state = initialState, action) => {
     case 'ADD_TODO':
       return Object.assign({}, state, {
         todos : state.todos.concat(todo({}, action))
+      })
+    case 'ADD_CATEGORY':
+      console.log('ADD_CATEGORY', action);
+      if (action.isRoot) {
+        return Object.assign({}, state, {
+          categories : state.categories.concat(getNewCategory(action))
+        })
+      }
+      return Object.assign({}, state, {
+        categories: state.categories.map(c =>
+          category(c, action)
+        )
       })
     default:
       return state;

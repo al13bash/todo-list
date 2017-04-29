@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import AddTodoForm from '../components/AddTodoForm/AddTodoForm';
+import AddForm from '../components/AddForm/AddForm';
 import * as actions from '../actions';
 
 const mapStateToProps = state => { return {state} }
@@ -8,13 +8,16 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addTodo: (text) => {
       dispatch(actions.addTodo(text));
+    },
+    addCategory: (name) => {
+      dispatch(actions.addCategory(name, undefined, true));
     }
   }
 }
 
-const AddTodoFormContainer = connect(
+const AddFormContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddTodoForm);
+)(AddForm);
 
-export default AddTodoFormContainer;
+export default AddFormContainer;
