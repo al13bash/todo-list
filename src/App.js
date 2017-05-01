@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
 import TodoItemListContainer from './containers/TodoItemListContainer';
-import AddFormContainer from './containers/AddFormContainer';
+import TodoFormContainer from './containers/TodoFormContainer';
+import CategoryFormContainer from './containers/CategoryFormContainer';
 import ProgressBarContainer from './containers/ProgressBarContainer';
 import CategoryListContainer from './containers/CategoryListContainer';
 import './App.css';
@@ -25,11 +26,11 @@ class App extends Component {
         <ProgressBarContainer />
         <div style={style.flex}>
           <Paper zDepth={2} style={style.paper}>
-            <AddFormContainer type='category'/>
+            <CategoryFormContainer />
             <CategoryListContainer />
           </Paper>
           <Paper zDepth={2} style={style.paper}>
-            <AddFormContainer type='todo'/>
+            <TodoFormContainer />
             <TodoItemListContainer />
           </Paper>
         </div>

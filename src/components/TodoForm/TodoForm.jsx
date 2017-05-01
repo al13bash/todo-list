@@ -9,29 +9,16 @@ class AddForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.hintText = this.hintText.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    if (this.props.type === 'todo') {
-      this.props.addTodo(this.state.value);
-    }
-    else {
-      this.props.addCategory(this.state.value)
-    }
+    this.props.addTodo(this.state.value);
     this.setState({value: ''});
   }
 
   handleChange(e) {
     this.setState({value: e.target.value});
-  }
-
-  hintText() {
-    if (this.props.type === 'category') {
-      return 'Enter category'
-    }
-    return 'Enter your todo'
   }
 
   render() {
@@ -53,7 +40,7 @@ class AddForm extends React.Component {
       <div style={style.container}>
         <form onSubmit={this.handleSubmit} style={style.form}>
           <TextField
-            hintText={this.hintText()}
+            hintText='Enter your todo'
             value={this.state.value}
             onChange={this.handleChange}
           />

@@ -10,13 +10,13 @@ class CategoryList extends React.Component {
 
   createNode(elem) {
     const style = {
-      marginLeft: 25,
+      paddingLeft: 25,
       marginTop: 3
     }
 
     return(
       <div key={elem.id} style={style}>
-        <Category elem={elem}/>
+        <Category elem={elem} />
         { elem.children.map((child) => this.createNode(child)) }
       </div>
     );
