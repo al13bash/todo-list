@@ -33,6 +33,21 @@ const category = (c = {}, action) => {
       return Object.assign({}, c, {
         children: c.children.concat(getNewCategory(action))
       })
+    case 'REMOVE_CATEGORY':
+      let result;
+      c.children.forEach((child, index) => {
+        if (child.id === action.id) {
+          result = Object.assign({}, c, {
+            children: [...c.children.slice(0, index), ...c.children.slice(index + 1)]
+          })
+        }
+      })
+      if(result === undefined) {
+        result = Object.assign({}, c, {
+          children: c.children.map((elem) => category(elem, action))
+        })
+      }
+      return result
   }
 }
 
@@ -56,6 +71,12 @@ const todoApp = (state = initialState, action) => {
       }
       return Object.assign({}, state, {
         categories: state.categories.map(c =>
+          category(c, action)
+        )
+      })
+    case 'REMOVE_CATEGORY':
+      return Object.assign({}, state, {
+        categories: state.categories.map((c) =>
           category(c, action)
         )
       })

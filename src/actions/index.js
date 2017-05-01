@@ -25,3 +25,10 @@ export const addCategory = (name, parentId, isRoot) => {
     isRoot
   }
 }
+
+export const removeCategory = (id) => {
+  return {
+    type: 'REMOVE_CATEGORY',
+    id
+  }
+}

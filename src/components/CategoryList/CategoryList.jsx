@@ -16,7 +16,7 @@ class CategoryList extends React.Component {
 
     return(
       <div key={elem.id} style={style}>
-        <Category elem={elem} />
+        <Category elem={elem} deleteNode={this.props.removeCategory}/>
         { elem.children.map((child) => this.createNode(child)) }
       </div>
     );

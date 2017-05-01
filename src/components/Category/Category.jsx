@@ -10,6 +10,7 @@ injectTapEventPlugin();
 class Category extends React.Component {
   constructor(props) {
     super(props);
+    console.log("qwert", this.props.elem.id);
     this.state = {
       openDialog: false,
       parentId: undefined
@@ -53,15 +54,26 @@ class Category extends React.Component {
         <Paper style={paper} zDepth={1} >
           <div>{this.props.elem.name}</div>
           <div>
-            <IconButton>
-              <ActionDelete />
-            </IconButton>
-            <IconButton
+            {/* <IconButton
+              id={this.props.elem.id}
+              style={button}
+              onTouchTap={this.handlertr}>
+              <ActionDelete id={this.props.elem.id}/>
+            </IconButton> */}
+            <button
+              id={this.props.elem.id}
+              onClick={this.props.deleteNode}
+            > del </button>
+            <button
+              id={this.props.elem.id}
+              onClick={this.handleOpenDialog}
+            > add </button>
+            {/* <IconButton
               id={this.props.elem.id}
               style={button}
               onTouchTap={this.handleOpenDialog}>
               <ContentAdd id={this.props.elem.id}/>
-            </IconButton>
+            </IconButton> */}
           </div>
         </Paper>
         {this.state.openDialog && this.renderDialogForm()}
