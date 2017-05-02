@@ -6,7 +6,7 @@ const getNewCategory = (action) => {
   }
 }
 
-const todo = (todo = {}, action) => {
+const todo = (todo = {}, action, categoryId) => {
   switch (action.type) {
     case 'TOGGLE_TODO':
       if (todo.id !== action.id) {
@@ -17,7 +17,8 @@ const todo = (todo = {}, action) => {
       return {
         id: action.id,
         title: action.text,
-        done: false
+        done: false,
+        categoryId: categoryId
       }
   }
 }
@@ -31,7 +32,7 @@ const category = (c = {}, action) => {
         })
       }
       return Object.assign({}, c, {
-        children: c.children.concat(getNewCategory(action))
+        children: [...c.children, getNewCategory(action)]
       })
     case 'REMOVE_CATEGORY':
       let result;
@@ -61,12 +62,12 @@ const todoApp = (state = initialState, action) => {
       })
     case 'ADD_TODO':
       return Object.assign({}, state, {
-        todos : state.todos.concat(todo({}, action))
+        todos: [...state.todos, todo({}, action, state.displayedCategoryId)]
       })
     case 'ADD_CATEGORY':
       if (action.isRoot) {
         return Object.assign({}, state, {
-          categories : state.categories.concat(getNewCategory(action))
+          categories : [...state.categories, getNewCategory(action)]
         })
       }
       return Object.assign({}, state, {
@@ -75,6 +76,7 @@ const todoApp = (state = initialState, action) => {
         )
       })
     case 'REMOVE_CATEGORY':
+    //add ability to remove root categories
       return Object.assign({}, state, {
         categories: state.categories.map((c) =>
           category(c, action)
