@@ -9,6 +9,7 @@ class AddForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.renderTodoForm = this.renderTodoForm.bind(this);
   }
 
   handleSubmit(e) {
@@ -21,24 +22,9 @@ class AddForm extends React.Component {
     this.setState({value: e.target.value});
   }
 
-  render() {
-    const style = {
-      button: {
-        margin: 12
-      },
-      container: {
-        width: "100%",
-        display: "flex",
-        justifyContent: "center"
-      },
-      form: {
-        display: "inline-block"
-      }
-    }
-
+  renderTodoForm() {
     return(
-      <div style={style.container}>
-        <form onSubmit={this.handleSubmit} style={style.form}>
+        <form onSubmit={this.handleSubmit}>
           <TextField
             hintText='Enter your todo'
             value={this.state.value}
@@ -47,10 +33,22 @@ class AddForm extends React.Component {
           <RaisedButton
             label="Add"
             primary={true}
-            style={style.button}
+            style={{margin: 12}}
             type="submit"
           />
         </form>
+    );
+  }
+
+  render() {
+    const container= {
+      display: "flex",
+      justifyContent: "center"
+    }
+
+    return (
+      <div style={container}>
+        { this.props.displayedCategoryId !== undefined && this.renderTodoForm() }
       </div>
     );
   }
