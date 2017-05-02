@@ -18,6 +18,7 @@ class Category extends React.Component {
 
     this.handleOpenDialog = this.handleOpenDialog.bind(this);
     this.renderDialogForm = this.renderDialogForm.bind(this);
+    this.handleCloseDialog = this.handleCloseDialog.bind(this);
   }
 
   handleOpenDialog(e) {
@@ -27,10 +28,16 @@ class Category extends React.Component {
     });
   }
 
+  handleCloseDialog() {
+    this.setState({openDialog: false});
+  }
+
   renderDialogForm() {
     return(
       <DialogFormContainer
         parentId={this.state.parentId}
+        handleCloseDialog={this.handleCloseDialog}
+        isOpen={this.state.openDialog}
       />
     );
   }
