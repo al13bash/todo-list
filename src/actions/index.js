@@ -32,3 +32,10 @@ export const removeCategory = (id) => {
     id
   }
 }
+
+export const changeDisplayedCategoryId = (id) => {
+  return {
+    type: 'CHANGE_DISPLAYED_CATEGORY_ID',
+    id
+  }
+}

@@ -80,6 +80,10 @@ const todoApp = (state = initialState, action) => {
           category(c, action)
         )
       })
+    case 'CHANGE_DISPLAYED_CATEGORY_ID':
+      return Object.assign({}, state, {
+        displayedCategoryId: action.id
+      })
     default:
       return state;
   }
@@ -92,17 +96,20 @@ let initialState = {
     {
       id: 0,
       title: "1st sdjfh",
-      done: true
+      done: true,
+      categoryId: 0
     },
     {
       id: 1,
       title: "2nd sdhjfk",
-      done: false
+      done: false,
+      categoryId: 0
     },
     {
       id: 2,
       title: "djsk sdhkf",
-      done: true
+      done: true,
+      categoryId: 1
     }
   ],
   categories: [
@@ -129,5 +136,6 @@ let initialState = {
       name: "CAT 2",
       children:[]
     }
-  ]
+  ],
+  displayedCategoryId: undefined
 }

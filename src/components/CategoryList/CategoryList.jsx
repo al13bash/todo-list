@@ -16,7 +16,11 @@ class CategoryList extends React.Component {
 
     return(
       <div key={elem.id} style={style}>
-        <Category elem={elem} deleteNode={this.props.removeCategory}/>
+        <Category
+          elem={elem}
+          deleteNode={this.props.removeCategory}
+          changeDisplayedCategoryId={this.props.changeDisplayedCategoryId}
+        />
         { elem.children.map((child) => this.createNode(child)) }
       </div>
     );
