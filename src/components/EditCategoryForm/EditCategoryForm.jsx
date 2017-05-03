@@ -13,7 +13,8 @@ class EditCategoryForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('edit to ', this.state.value);
+    this.props.closeDialog();
+    this.props.editCategory(this.props.category.id, this.state.value);
     this.setState({value: ''});
   }
 

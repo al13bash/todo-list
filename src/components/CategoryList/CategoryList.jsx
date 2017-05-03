@@ -1,14 +1,9 @@
 import React from 'react';
 import Category from '../Category/Category';
 
-class CategoryList extends React.Component {
-  constructor(props) {
-    super(props);
+const CategoryList = (props) => {
 
-    this.createNode = this.createNode.bind(this);
-  }
-
-  createNode(elem) {
+  const createNode = elem => {
     const style = {
       paddingLeft: 25,
       marginTop: 3
@@ -18,25 +13,19 @@ class CategoryList extends React.Component {
       <div key={elem.id} style={style}>
         <Category
           elem={elem}
-          deleteNode={this.props.removeCategory}
-          changeDisplayedCategoryId={this.props.changeDisplayedCategoryId}
+          deleteNode={props.removeCategory}
+          changeDisplayedCategoryId={props.changeDisplayedCategoryId}
         />
-        { elem.children.map((child) => this.createNode(child)) }
+        { elem.children.map((child) => createNode(child)) }
       </div>
     );
   }
 
-  render() {
-    return(
-      <div>
-        {
-          this.props.categories.map((elem, index) => {
-            return(this.createNode(elem));
-          })
-        }
-      </div>
-    );
-  }
+  return(
+    <div>
+      { props.categories.map((elem, index) => createNode(elem)) }
+    </div>
+  );
 }
 
 export default CategoryList;

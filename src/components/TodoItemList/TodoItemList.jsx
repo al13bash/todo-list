@@ -13,13 +13,12 @@ class TodoItemList extends React.Component {
         {this.props.todos.map((todo, index) => {
           if (this.props.displayedCategoryId === undefined ||
               todo.categoryId === this.props.displayedCategoryId) {
-            return(
+            return (
               <TodoItem
                 key={ index }
                 todo={ todo }
-                toggleTodo={ this.props.toggleTodo }>
-              </TodoItem>
-            )
+                toggleTodo={ this.props.toggleTodo } />
+            );
           }
         })}
       </div>

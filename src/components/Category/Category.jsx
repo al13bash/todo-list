@@ -17,20 +17,21 @@ class Category extends React.Component {
       dialogType: undefined
     }
 
-    this.handleOpenDialog = this.handleOpenDialog.bind(this);
+    this.openDialog = this.openDialog.bind(this);
     this.renderDialogForm = this.renderDialogForm.bind(this);
-    this.handleCloseDialog = this.handleCloseDialog.bind(this);
+    this.closeDialog = this.closeDialog.bind(this);
   }
 
-  handleOpenDialog(e) {
+  openDialog(e) {
+    console.log(this);
     this.setState({
       openDialog: true,
-      parentId: e.target.id,
+      parentId: this.props.elem.id,
       dialogType: e.target.name
     });
   }
 
-  handleCloseDialog() {
+  closeDialog() {
     this.setState({openDialog: false});
   }
 
@@ -38,7 +39,7 @@ class Category extends React.Component {
     return(
       <DialogFormContainer
         parentId={this.state.parentId}
-        handleCloseDialog={this.handleCloseDialog}
+        closeDialog={this.closeDialog}
         isOpen={this.state.openDialog}
         dialogType={this.state.dialogType}
         category={this.props.elem}
@@ -70,21 +71,13 @@ class Category extends React.Component {
           onClick={this.props.changeDisplayedCategoryId}>
           {this.props.elem.name}
           <div>
-            <button
-              id={this.props.elem.id}
-              onClick={this.handleOpenDialog}
-              name="edit">
+            <button onClick={this.openDialog} name="edit">
               edit
             </button>
-            <button
-              id={this.props.elem.id}
-              onClick={this.props.deleteNode}>
+            <button onClick={this.props.deleteNode} id={this.props.elem.id}>
               del
             </button>
-            <button
-              id={this.props.elem.id}
-              onClick={this.handleOpenDialog}
-              name="add">
+            <button onClick={this.openDialog} name="add">
               add
             </button>
           </div>

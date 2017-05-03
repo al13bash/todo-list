@@ -13,9 +13,8 @@ class AddForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-
     if (this.props.modal) {
-      this.props.handleCloseDialog();
+      this.props.closeDialog();
       this.props.addCategory(this.state.value, Number(this.props.parentId), false);
     }
     else {
