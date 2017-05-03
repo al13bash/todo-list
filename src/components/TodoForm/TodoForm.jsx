@@ -24,19 +24,18 @@ class AddForm extends React.Component {
 
   renderTodoForm() {
     return(
-        <form onSubmit={this.handleSubmit}>
-          <TextField
-            hintText='Enter your todo'
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-          <RaisedButton
-            label="Add"
-            primary={true}
-            style={{margin: 12}}
-            type="submit"
-          />
-        </form>
+      <form onSubmit={this.handleSubmit}>
+        <TextField
+          hintText='Enter your todo'
+          value={this.state.value}
+          onChange={this.handleChange}
+        />
+        <RaisedButton
+          label="Add"
+          primary={true}
+          type="submit"
+        />
+      </form>
     );
   }
 

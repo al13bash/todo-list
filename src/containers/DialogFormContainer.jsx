@@ -8,6 +8,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addCategory: (name, parentId, isRoot) => {
       dispatch(actions.addCategory(name, parentId, isRoot));
+    },
+    editCategory: (id, name) => {
+      dispatch(actions.editCategory(id, name));
     }
   }
 }

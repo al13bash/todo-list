@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-class AddForm extends React.Component {
+class EditCategoryForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {value: ''};
@@ -13,14 +13,7 @@ class AddForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-
-    if (this.props.modal) {
-      this.props.handleCloseDialog();
-      this.props.addCategory(this.state.value, Number(this.props.parentId), false);
-    }
-    else {
-      this.props.addCategory(this.state.value, undefined, true);
-    }
+    console.log('edit to ', this.state.value);
     this.setState({value: ''});
   }
 
@@ -30,7 +23,6 @@ class AddForm extends React.Component {
 
   render() {
     const container = {
-      width: "100%",
       display: "flex",
       justifyContent: "center"
     }
@@ -39,12 +31,12 @@ class AddForm extends React.Component {
       <div style={container}>
         <form onSubmit={this.handleSubmit}>
           <TextField
-            hintText='Enter category'
-            value={this.state.value}
+            defaultValue={this.props.category.name}
+            floatingLabelText="Edit Category Name"
             onChange={this.handleChange}
           />
           <RaisedButton
-            label="Add"
+            label="Submit"
             primary={true}
             type="submit" />
         </form>
@@ -53,4 +45,4 @@ class AddForm extends React.Component {
   }
 }
 
-export default AddForm;
+export default EditCategoryForm;

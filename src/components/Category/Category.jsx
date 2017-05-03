@@ -13,7 +13,8 @@ class Category extends React.Component {
 
     this.state = {
       openDialog: false,
-      parentId: undefined
+      parentId: undefined,
+      dialogType: undefined
     }
 
     this.handleOpenDialog = this.handleOpenDialog.bind(this);
@@ -24,7 +25,8 @@ class Category extends React.Component {
   handleOpenDialog(e) {
     this.setState({
       openDialog: true,
-      parentId: e.target.id
+      parentId: e.target.id,
+      dialogType: e.target.name
     });
   }
 
@@ -38,6 +40,8 @@ class Category extends React.Component {
         parentId={this.state.parentId}
         handleCloseDialog={this.handleCloseDialog}
         isOpen={this.state.openDialog}
+        dialogType={this.state.dialogType}
+        category={this.props.elem}
       />
     );
   }
@@ -68,12 +72,19 @@ class Category extends React.Component {
           <div>
             <button
               id={this.props.elem.id}
+              onClick={this.handleOpenDialog}
+              name="edit">
+              edit
+            </button>
+            <button
+              id={this.props.elem.id}
               onClick={this.props.deleteNode}>
               del
             </button>
             <button
               id={this.props.elem.id}
-              onClick={this.handleOpenDialog}>
+              onClick={this.handleOpenDialog}
+              name="add">
               add
             </button>
           </div>

@@ -39,3 +39,11 @@ export const changeDisplayedCategoryId = (id) => {
     id
   }
 }
+
+export const editCategory = (id, name) => {
+  return {
+    type: 'CHANGE_CATEGORY_NAME',
+    id,
+    name
+  }
+}
