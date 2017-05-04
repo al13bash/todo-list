@@ -16,6 +16,13 @@ export const toggleTodo = (id) => {
   }
 }
 
+export const removeTodo = (categoryId) => {
+  return {
+    type: 'REMOVE_TODO',
+    categoryId
+  }
+}
+
 export const addCategory = (name, parentId, isRoot) => {
   return {
     type: 'ADD_CATEGORY',

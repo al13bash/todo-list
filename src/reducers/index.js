@@ -69,6 +69,11 @@ const todo = (todo = {}, action, categoryId) => {
         done: false,
         categoryId: categoryId
       }
+    case 'REMOVE_TODO':
+      if(todo.categoryId === action.categoryId) {
+        return false
+      }
+      return true
     default:
       return todo
   }
@@ -124,6 +129,12 @@ const todoApp = (state = initialState, action) => {
       return Object.assign({}, state, {
         todos: [...state.todos, todo({}, action, state.displayedCategoryId)]
       })
+    case 'REMOVE_TODO':
+      return Object.assign({}, state, {
+        todos: state.todos.filter(t =>
+          todo(t, action)
+        )
+      })
     case 'ADD_CATEGORY':
       if (action.isRoot) {
         return Object.assign({}, state, {
@@ -144,7 +155,7 @@ const todoApp = (state = initialState, action) => {
     case 'REMOVE_CATEGORY':
     //add ability to remove root categories
       return Object.assign({}, state, {
-        categories: state.categories.map((c) =>
+        categories: state.categories.map(c =>
           category(c, action)
         )
       })
