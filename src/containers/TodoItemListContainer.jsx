@@ -11,8 +11,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleTodo: (id) => {
-      dispatch(actions.toggleTodo(id));
+    toggleTodo: (todo) => {
+      dispatch(actions.toggleTodo(todo.id));
+      dispatch(actions.triggerTodoCheck(todo.categoryId));
     }
   }
 }

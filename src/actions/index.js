@@ -54,3 +54,10 @@ export const editCategory = (id, name) => {
     name
   }
 }
+
+export const triggerTodoCheck = (categoryId) => {
+  return {
+    type: 'TRIGGER_TODO_CHECK',
+    categoryId
+  }
+}

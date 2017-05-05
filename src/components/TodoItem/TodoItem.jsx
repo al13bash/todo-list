@@ -8,7 +8,7 @@ import './TodoItem.css';
 const TodoItem = (props) => {
 
   const handleClick = e => {
-    props.toggleTodo(Number(e.target.id));
+    props.toggleTodo(props.todo);
   }
 
   const style = {
@@ -29,7 +29,6 @@ const TodoItem = (props) => {
   return(
     <Paper style={style.paper} zDepth={1} >
       <Checkbox
-        id={props.todo.id}
         style={style.checkbox}
         label={props.todo.title}
         checked={props.todo.done}

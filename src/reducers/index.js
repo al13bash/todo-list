@@ -23,24 +23,29 @@ let initialState = {
     {
       id: 0,
       name: "CAT 1",
+      done: false,
       children: [{
         id: 2,
         name: "CAT 1-1",
+        done: false,
         children:[{
           id: 4,
           name: "CAT 1-1-1",
+          done: false,
           children:[]
         }]
       },
       {
         id: 3,
         name: "CAT 1-2",
+        done: false,
         children:[]
       }]
     },
     {
       id: 1,
       name: "CAT 2",
+      done: false,
       children:[]
     }
   ],
@@ -51,6 +56,7 @@ const getNewCategory = (action) => {
   return {
     id: action.id,
     name: action.name,
+    done: false,
     children: []
   }
 }
@@ -112,6 +118,13 @@ const category = (c = {}, action) => {
         })
       }
       return Object.assign({}, c, { name: action.name })
+    case 'TRIGGER_TODO_CHECK':
+      if (c.id !== action.categoryId) {
+        return Object.assign({}, c, {
+          children: c.children.map(elem => category(elem, action))
+        })
+      }
+      return Object.assign({}, c, { done: true })
     default:
       return c
   }
@@ -170,6 +183,16 @@ const todoApp = (state = initialState, action) => {
       return Object.assign({}, state, {
         displayedCategoryId: action.id
       })
+    case 'TRIGGER_TODO_CHECK':
+      if (state.todos.filter(item => item.categoryId === state.displayedCategoryId)
+         .every(item => item.done === true)) {
+           return Object.assign({}, state, {
+             categories: state.categories.map(c =>
+               category(c, action)
+             )
+           })
+         }
+      return state;
     default:
       return state;
   }
