@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import CategoryList from '../components/CategoryList/CategoryList';
+import { routerMiddleware, push } from 'react-router-redux'
 import * as actions from '../actions';
 
 const mapStateToProps = state => {
   return {
-    categories: state.categories
+    categories: state.todoApp.categories
   }
 }
 
@@ -17,6 +18,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     changeDisplayedCategoryId: (event) => {
       dispatch(actions.changeDisplayedCategoryId(Number(event.target.id)));
+      dispatch(push('/foo'));
     }
   }
 }

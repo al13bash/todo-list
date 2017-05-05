@@ -4,6 +4,7 @@ import IconButton from 'material-ui/IconButton';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import DialogFormContainer from '../../containers/DialogFormContainer';
+import { Link } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
@@ -23,7 +24,6 @@ class Category extends React.Component {
   }
 
   openDialog(e) {
-    console.log(this);
     this.setState({
       openDialog: true,
       parentId: this.props.elem.id,

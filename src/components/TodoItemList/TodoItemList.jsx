@@ -10,14 +10,15 @@ class TodoItemList extends React.Component {
   render() {
     return(
       <div>
-        {this.props.todos.map((todo, index) => {
+        {this.props.todos.map( todo => {
           if (this.props.displayedCategoryId === undefined ||
               todo.categoryId === this.props.displayedCategoryId) {
             return (
               <TodoItem
-                key={ index }
-                todo={ todo }
-                toggleTodo={ this.props.toggleTodo } />
+                key={todo.id}
+                todo={todo}
+                toggleTodo={ this.props.toggleTodo }
+              />
             );
           }
         })}
