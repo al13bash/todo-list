@@ -153,7 +153,14 @@ const todoApp = (state = initialState, action) => {
         )
       })
     case 'REMOVE_CATEGORY':
-    //add ability to remove root categories
+      for (let item of state.categories) {
+        console.log(item.id, action.id);
+        if (item.id === action.id) {
+          return Object.assign({}, state, {
+            categories: state.categories.filter(item => item.id !== action.id)
+          })
+        }
+      }
       return Object.assign({}, state, {
         categories: state.categories.map(c =>
           category(c, action)

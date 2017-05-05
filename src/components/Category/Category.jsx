@@ -27,7 +27,6 @@ class Category extends React.Component {
   }
 
   openDialog(e) {
-    console.log(e.target);
     this.setState({
       openDialog: true,
       parentId: this.props.elem.id,
