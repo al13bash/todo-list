@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import CategoryList from '../components/CategoryList/CategoryList';
-import { routerMiddleware, push } from 'react-router-redux'
 import * as actions from '../actions';
 
 const mapStateToProps = state => {
@@ -11,14 +10,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    removeCategory: (event) => {
-      let categoryId = Number(event.target.id);
+    removeCategory: (id) => {
+      let categoryId = Number(id);
       dispatch(actions.removeCategory(categoryId));
       dispatch(actions.removeTodo(categoryId));
     },
-    changeDisplayedCategoryId: (event) => {
-      dispatch(actions.changeDisplayedCategoryId(Number(event.target.id)));
-      dispatch(push('/foo'));
+    changeDisplayedCategoryId: (id) => {
+      dispatch(actions.changeDisplayedCategoryId(Number(id)));
     }
   }
 }

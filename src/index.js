@@ -20,20 +20,15 @@ const store = createStore(
 
 const history = syncHistoryWithStore(browserHistory, store);
 
-// const store = createStore(todoApp,
-// 	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-
 const muiTheme = getMuiTheme({
 });
-
-console.log(muiTheme);
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Provider store={store}>
       <MuiThemeProvider muiTheme={muiTheme}>
         <Router history={history}>
-          <Route path="/" component={App}>
+          <Route path="/(:categoryId)" component={App}>
           </Route>
         </Router>
       </MuiThemeProvider>

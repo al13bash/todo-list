@@ -1,8 +1,9 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
-import IconButton from 'material-ui/IconButton';
-import ActionDelete from 'material-ui/svg-icons/action/delete';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+// import IconButton from 'material-ui/IconButton';
+// import ActionDelete from 'material-ui/svg-icons/action/delete';
+// import ContentAdd from 'material-ui/svg-icons/content/add';
+// import ImageEdit from 'material-ui/svg-icons/image/edit';
 import DialogFormContainer from '../../containers/DialogFormContainer';
 import { Link } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -18,12 +19,15 @@ class Category extends React.Component {
       dialogType: undefined
     }
 
+    this.toggleCategory = this.toggleCategory.bind(this);
+    this.deleteCategory = this.deleteCategory.bind(this);
     this.openDialog = this.openDialog.bind(this);
     this.renderDialogForm = this.renderDialogForm.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
   }
 
   openDialog(e) {
+    console.log(e.target);
     this.setState({
       openDialog: true,
       parentId: this.props.elem.id,
@@ -33,6 +37,14 @@ class Category extends React.Component {
 
   closeDialog() {
     this.setState({openDialog: false});
+  }
+
+  toggleCategory() {
+    this.props.changeDisplayedCategoryId(this.props.elem.id);
+  }
+
+  deleteCategory() {
+    this.props.deleteNode(this.props.elem.id);
   }
 
   renderDialogForm() {
@@ -66,15 +78,17 @@ class Category extends React.Component {
       <div>
         <Paper
           style={paper}
-          zDepth={1}
-          id={this.props.elem.id}
-          onClick={this.props.changeDisplayedCategoryId}>
-          {this.props.elem.name}
+          zDepth={1}>
+          <Link
+            to={{ pathname:'/', query: { categoryId: this.props.elem.id } }}
+            onClick={this.toggleCategory}>
+            {this.props.elem.name}
+          </Link>
           <div>
             <button onClick={this.openDialog} name="edit">
               edit
             </button>
-            <button onClick={this.props.deleteNode} id={this.props.elem.id}>
+            <button onClick={this.deleteCategory}>
               del
             </button>
             <button onClick={this.openDialog} name="add">
