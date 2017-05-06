@@ -3,7 +3,7 @@ let initialState = {
     {
       id: 0,
       title: "1st sdjfh",
-      done: true,
+      done: false,
       categoryId: 0
     },
     {
@@ -15,7 +15,7 @@ let initialState = {
     {
       id: 2,
       title: "djsk sdhkf",
-      done: true,
+      done: false,
       categoryId: 1
     }
   ],
@@ -27,18 +27,18 @@ let initialState = {
       children: [{
         id: 2,
         name: "CAT 1-1",
-        done: false,
+        done: true,
         children:[{
           id: 4,
           name: "CAT 1-1-1",
-          done: false,
+          done: true,
           children:[]
         }]
       },
       {
         id: 3,
         name: "CAT 1-2",
-        done: false,
+        done: true,
         children:[]
       }]
     },
@@ -56,7 +56,7 @@ const getNewCategory = (action) => {
   return {
     id: action.id,
     name: action.name,
-    done: false,
+    done: true,
     children: []
   }
 }
@@ -189,7 +189,6 @@ const todoApp = (state = initialState, action) => {
         .every(item => item.done === true)) {
           isDone = Object.assign({}, isDone, {done: true});//
         }
-      console.log(isDone);
       return Object.assign({}, state, {
          categories: state.categories.map(c =>
            category(c, Object.assign({}, action, isDone))

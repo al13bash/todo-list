@@ -14,7 +14,7 @@ class AddForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.addTodo(this.state.value);
+    this.props.addTodo(this.state.value, this.props.displayedCategoryId);
     this.setState({value: ''});
   }
 

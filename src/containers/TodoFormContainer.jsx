@@ -11,8 +11,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addTodo: (text) => {
+    addTodo: (text, categoryId) => {
       dispatch(actions.addTodo(text));
+      dispatch(actions.triggerTodoCheck(categoryId));
     }
   }
 }
