@@ -124,7 +124,7 @@ const category = (c = {}, action) => {
           children: c.children.map(elem => category(elem, action))
         })
       }
-      return Object.assign({}, c, { done: true })
+      return Object.assign({}, c, { done: action.done })
     default:
       return c
   }
@@ -184,15 +184,17 @@ const todoApp = (state = initialState, action) => {
         displayedCategoryId: action.id
       })
     case 'TRIGGER_TODO_CHECK':
+      let isDone = {done: false};
       if (state.todos.filter(item => item.categoryId === state.displayedCategoryId)
-         .every(item => item.done === true)) {
-           return Object.assign({}, state, {
-             categories: state.categories.map(c =>
-               category(c, action)
-             )
-           })
-         }
-      return state;
+        .every(item => item.done === true)) {
+          isDone = Object.assign({}, isDone, {done: true});//
+        }
+      console.log(isDone);
+      return Object.assign({}, state, {
+         categories: state.categories.map(c =>
+           category(c, Object.assign({}, action, isDone))
+         )
+       });
     default:
       return state;
   }
