@@ -49,7 +49,8 @@ let initialState = {
       children:[]
     }
   ],
-  displayedCategoryId: undefined
+  displayedCategoryId: undefined,
+  showDoneTodos: true
 }
 
 const getNewCategory = (action) => {
@@ -194,6 +195,8 @@ const todoApp = (state = initialState, action) => {
            category(c, Object.assign({}, action, isDone))
          )
        });
+    case 'TOGGLE_VISIBILITY_FILTER':
+      return Object.assign({}, state, { showDoneTodos: action.showDone });
     default:
       return state;
   }

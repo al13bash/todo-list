@@ -5,11 +5,12 @@ import TodoFormContainer from './containers/TodoFormContainer';
 import CategoryFormContainer from './containers/CategoryFormContainer';
 import ProgressBarContainer from './containers/ProgressBarContainer';
 import CategoryListContainer from './containers/CategoryListContainer';
+import FilterTabContainer from './containers/FilterTabContainer';
 import './App.css';
 
 const App = props => {
   const style = {
-    paper: { 
+    paper: {
       padding: 20,
       margin: 20
     },
@@ -22,6 +23,7 @@ const App = props => {
   return (
     <div>
       <ProgressBarContainer />
+      <FilterTabContainer />
       <div style={style.flex}>
         <Paper zDepth={2} style={style.paper}>
           <CategoryFormContainer />

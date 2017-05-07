@@ -61,3 +61,10 @@ export const triggerTodoCheck = (categoryId) => {
     categoryId
   }
 }
+
+export const toggleVisibilityFilter = (showDone) => {
+  return {
+    type: 'TOGGLE_VISIBILITY_FILTER',
+    showDone
+  }
+}

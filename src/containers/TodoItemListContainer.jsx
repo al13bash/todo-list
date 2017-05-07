@@ -5,7 +5,8 @@ import * as actions from '../actions';
 const mapStateToProps = state => {
   return {
     todos: state.todoApp.todos,
-    displayedCategoryId: state.todoApp.displayedCategoryId
+    displayedCategoryId: state.todoApp.displayedCategoryId,
+    showDoneTodos: state.todoApp.showDoneTodos
   }
 }
 
