@@ -50,7 +50,8 @@ let initialState = {
     }
   ],
   displayedCategoryId: undefined,
-  showDoneTodos: true
+  showDoneTodos: true,
+  search: ''
 }
 
 const getNewCategory = (action) => {
@@ -197,6 +198,10 @@ const todoApp = (state = initialState, action) => {
        });
     case 'TOGGLE_VISIBILITY_FILTER':
       return Object.assign({}, state, { showDoneTodos: action.showDone });
+    case 'UPDATE_SEARCH_REQUEST':
+      return Object.assign({}, state, { search: action.text });
+    case 'RESET_SEARCH':
+      return Object.assign({}, state, { search: '' });
     default:
       return state;
   }

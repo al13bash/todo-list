@@ -7,19 +7,29 @@ const TodoItemList = (props) => {
 
   const categoryFilter = todo => (props.displayedCategoryId === undefined || todo.categoryId === props.displayedCategoryId)
 
+  const searchFilter = () => {
+    let searchString = '';
+    let todosList = [];
+    if (props.search !== undefined && props.search.length > 0) {
+      searchString = props.search.trim().toLowerCase();
+      todosList = props.todos.filter(item => {
+        return item.title.toLowerCase().match( searchString );
+      });
+    }
+    else return props.todos
+    return todosList
+  }
+
   return(
     <div>
-      {props.todos.map( todo => {
-        if (categoryFilter(todo) && showDoneFilter(todo)) {
-          return(
-            <TodoItem
-              key={todo.id}
-              todo={todo}
-              toggleTodo={props.toggleTodo}
-            />
-          )
-        }
-      })}
+      {searchFilter().filter( todo => categoryFilter(todo) && showDoneFilter(todo))
+        .map(todo =>
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            toggleTodo={props.toggleTodo}
+          />
+        )}
     </div>
   );
 }

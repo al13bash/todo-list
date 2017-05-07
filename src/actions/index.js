@@ -68,3 +68,16 @@ export const toggleVisibilityFilter = (showDone) => {
     showDone
   }
 }
+
+export const updateSearchRequest = (text) => {
+  return {
+    type: 'UPDATE_SEARCH_REQUEST',
+    text
+  }
+}
+
+export const resetSearch = () => {
+  return {
+    type: 'RESET_SEARCH'
+  }
+}

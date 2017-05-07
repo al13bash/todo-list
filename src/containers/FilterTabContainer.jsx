@@ -7,8 +7,13 @@ const mapStateToProps = state => { return {categories: state.todoApp.categories}
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleVisibilityFilter: (showDone) => {
-      console.log(showDone);
       dispatch(actions.toggleVisibilityFilter(showDone));
+    },
+    updateSearchRequest: (text) => {
+      dispatch(actions.updateSearchRequest(text));
+    },
+    resetSearch: () => {
+      dispatch(actions.updateSearchRequest());
     }
   }
 }

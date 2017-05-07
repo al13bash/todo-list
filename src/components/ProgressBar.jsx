@@ -38,7 +38,6 @@ const ProgressBar = ({categories}) => {
   const calcProgressValue = () => {
     let allCategory = categoryCalculations(categories, categoryAmount);
     let doneCategory = categoryCalculations(categories, doneCategoryAmount);
-    console.log("DONE", doneCategory);
     return Math.round((100*doneCategory)/allCategory);
   }
 

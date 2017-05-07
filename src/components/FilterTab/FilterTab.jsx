@@ -14,10 +14,17 @@ class FilterTab extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   handleChange(e) {
+    this.props.updateSearchRequest(e.target.value);
     this.setState({searchValue: e.target.value});
+  }
+
+  handleReset() {
+    this.props.resetSearch();
+    this.setState({searchValue: ''});
   }
 
   handleCheck() {
@@ -35,10 +42,10 @@ class FilterTab extends React.Component {
             checked={this.state.showDone}
           />
         </div>
-        <form>
-          <TextField hintText="Search" onChange={this.handleChange}/>
-          <RaisedButton label="Search" secondary={true} />
-        </form>
+        <div>
+          <TextField hintText="Search" value={this.state.searchValue} onChange={this.handleChange}/>
+          <RaisedButton label="Reset" secondary={true} onClick={this.handleReset}/>
+        </div>
       </div>
     );
   }

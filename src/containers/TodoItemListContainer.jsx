@@ -6,7 +6,8 @@ const mapStateToProps = state => {
   return {
     todos: state.todoApp.todos,
     displayedCategoryId: state.todoApp.displayedCategoryId,
-    showDoneTodos: state.todoApp.showDoneTodos
+    showDoneTodos: state.todoApp.showDoneTodos,
+    search: state.todoApp.search
   }
 }
 
