@@ -2,6 +2,7 @@ import React from 'react';
 import Checkbox from 'material-ui/Checkbox';
 // import IconButton from 'material-ui/IconButton';
 // import ImageEdit from 'material-ui/svg-icons/image/edit';
+import { Link } from 'react-router';
 import Paper from 'material-ui/Paper';
 import './TodoItem.css';
 
@@ -34,9 +35,7 @@ const TodoItem = (props) => {
         checked={props.todo.done}
         onCheck={handleClick}
       />
-      <button name="edit">
-        edit
-      </button>
+      <Link to={`/edit/${props.todo.id}`}>edit</Link>
     </Paper>
   );
 }

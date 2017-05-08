@@ -40,6 +40,7 @@ class FilterTab extends React.Component {
             label="Show done"
             onCheck={this.handleCheck}
             checked={this.state.showDone}
+            className="checkbox"
           />
         </div>
         <div>
