@@ -8,6 +8,12 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 const DialogForm = (props) => {
 
   var actions = [];
+
+  const removeCategory = () => {
+    props.removeCategory(props.category.id);
+    props.closeDialog();
+  }
+
   const deleteConfirmation = () => {
     actions = [
       <FlatButton
@@ -22,11 +28,6 @@ const DialogForm = (props) => {
         onTouchTap={props.closeDialog}
       />,
     ];
-  }
-
-  const removeCategory = () => {
-    props.removeCategory(props.category.id);
-    props.closeDialog();
   }
 
   return(
@@ -56,6 +57,7 @@ const DialogForm = (props) => {
                 />)
             case 'delete':
               return(<div>Delete?</div>)
+            default: return
           }
         })()}
       </Dialog>

@@ -20,7 +20,6 @@ class Category extends React.Component {
     }
 
     this.toggleCategory = this.toggleCategory.bind(this);
-    this.deleteCategory = this.deleteCategory.bind(this);
     this.openDialog = this.openDialog.bind(this);
     this.renderDialogForm = this.renderDialogForm.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
