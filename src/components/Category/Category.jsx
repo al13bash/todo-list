@@ -42,10 +42,6 @@ class Category extends React.Component {
     this.props.changeDisplayedCategoryId(this.props.elem.id);
   }
 
-  deleteCategory() {
-    this.props.deleteNode(this.props.elem.id);
-  }
-
   renderDialogForm() {
     return(
       <DialogFormContainer
@@ -87,7 +83,7 @@ class Category extends React.Component {
             <button onClick={this.openDialog} name="edit">
               edit
             </button>
-            <button onClick={this.deleteCategory}>
+            <button onClick={this.openDialog} name="delete">
               del
             </button>
             <button onClick={this.openDialog} name="add">

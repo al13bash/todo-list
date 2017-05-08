@@ -10,11 +10,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    removeCategory: (id) => {
-      let categoryId = Number(id);
-      dispatch(actions.removeCategory(categoryId));
-      dispatch(actions.removeTodo(categoryId));
-    },
     changeDisplayedCategoryId: (id) => {
       dispatch(actions.changeDisplayedCategoryId(Number(id)));
     }

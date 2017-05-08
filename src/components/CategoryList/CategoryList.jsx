@@ -13,7 +13,6 @@ const CategoryList = (props) => {
       <div key={elem.id} style={style}>
         <Category
           elem={elem}
-          deleteNode={props.removeCategory}
           changeDisplayedCategoryId={props.changeDisplayedCategoryId}
         />
         { elem.children.map((child) => createNode(child)) }

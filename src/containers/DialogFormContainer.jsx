@@ -11,6 +11,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     editCategory: (id, name) => {
       dispatch(actions.editCategory(id, name));
+    },
+    removeCategory: (id) => {
+      dispatch(actions.removeCategory(id));
+      dispatch(actions.removeTodo(id));
     }
   }
 }
