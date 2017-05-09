@@ -6,12 +6,11 @@ import TodoEditForm from '../components/TodoEditForm/TodoEditForm';
 import * as actions from '../actions';
 
 const EditPage = props => {
-
-  console.log(props);
+  const todoId = +props.routeParams.id;
 
   const getTodoById = () => {
     for (let todo of props.todos) {
-      if (todo.id === +props.routeParams.id) return todo;
+      if (todo.id === todoId) return todo;
     }
   }
 
@@ -34,7 +33,11 @@ const EditPage = props => {
       <h1>{ todo.title }</h1>
       <div style={style.flex}>
         <Paper zDepth={2} style={style.paper}>
-          <CategoryListContainer />
+          <CategoryListContainer
+            edit
+            todoId={todoId}
+            changeTodosCategory={props.changeTodosCategory}
+          />
         </Paper>
         <Paper zDepth={2} style={style.paper}>
           <TodoEditForm
@@ -57,6 +60,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     editTodo: (id, todo) => {
       dispatch(actions.editTodo(id, todo.title, todo.description, todo.done));
+    },
+    changeTodosCategory: (categoryId, todoId) => {
+      dispatch(actions.changeTodosCategory(categoryId, todoId));
     }
   }
 }

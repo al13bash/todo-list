@@ -23,6 +23,12 @@ class Category extends React.Component {
     this.openDialog = this.openDialog.bind(this);
     this.renderDialogForm = this.renderDialogForm.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
+    this.renderButtons = this.renderButtons.bind(this);
+    this.changeCategory = this.changeCategory.bind(this);
+  }
+
+  changeCategory() {
+    this.props.changeTodosCategory(this.props.elem.id, this.props.todoId);
   }
 
   openDialog(e) {
@@ -53,6 +59,30 @@ class Category extends React.Component {
     );
   }
 
+  renderButtons() {
+    if (!this.props.edit)
+      return(
+        <div>
+          <button onClick={this.openDialog} name="edit">
+            edit
+          </button>
+          <button onClick={this.openDialog} name="delete">
+            del
+          </button>
+          <button onClick={this.openDialog} name="add">
+            add
+          </button>
+      </div>
+      );
+    else return(
+      <div>
+        <button onClick={this.changeCategory} name="change">
+          change
+        </button>
+      </div>
+    );
+  }
+
   render() {
     const paper = {
       height: 40,
@@ -78,17 +108,7 @@ class Category extends React.Component {
             onClick={this.toggleCategory}>
             {this.props.elem.name}
           </Link>
-          <div>
-            <button onClick={this.openDialog} name="edit">
-              edit
-            </button>
-            <button onClick={this.openDialog} name="delete">
-              del
-            </button>
-            <button onClick={this.openDialog} name="add">
-              add
-            </button>
-          </div>
+          {this.renderButtons()}
         </Paper>
         {this.state.openDialog && this.renderDialogForm()}
       </div>

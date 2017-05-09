@@ -14,6 +14,9 @@ const CategoryList = (props) => {
         <Category
           elem={elem}
           changeDisplayedCategoryId={props.changeDisplayedCategoryId}
+          edit={props.edit}
+          todoId={props.todoId}
+          changeTodosCategory={props.changeTodosCategory}
         />
         { elem.children.map((child) => createNode(child)) }
       </div>

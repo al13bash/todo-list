@@ -23,6 +23,14 @@ export const removeTodo = (categoryId) => {
   }
 }
 
+export const changeTodosCategory = (categoryId, todoId) => {
+  return {
+    type: 'CHANGE_TODOS_CATEGORY',
+    todoId,
+    categoryId
+  }
+}
+
 export const editTodo = (id, title, description, done) => {
   return {
     type: 'EDIT_TODO',

@@ -88,7 +88,6 @@ const todo = (todo = {}, action, categoryId) => {
       return true
     case 'EDIT_TODO':
       if (todo.id === action.id) {
-        console.log("hey");
         return Object.assign({}, todo, {
           title: action.title,
           done: action.done,
@@ -96,6 +95,13 @@ const todo = (todo = {}, action, categoryId) => {
         });
       }
       return todo
+    case 'CHANGE_TODOS_CATEGORY':
+      if (todo.id === action.todoId) {
+        return Object.assign({}, todo, {
+          categoryId: action.categoryId
+        });
+      }
+    return todo
     default:
       return todo
   }
@@ -217,6 +223,12 @@ const todoApp = (state = initialState, action) => {
     case 'RESET_SEARCH':
       return Object.assign({}, state, { search: '' });
     case 'EDIT_TODO':
+      return Object.assign({}, state, {
+        todos: state.todos.map(t =>
+          todo(t, action)
+        )
+      })
+    case 'CHANGE_TODOS_CATEGORY':
       return Object.assign({}, state, {
         todos: state.todos.map(t =>
           todo(t, action)
