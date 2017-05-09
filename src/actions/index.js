@@ -23,6 +23,16 @@ export const removeTodo = (categoryId) => {
   }
 }
 
+export const editTodo = (id, title, description, done) => {
+  return {
+    type: 'EDIT_TODO',
+    id,
+    title,
+    description,
+    done
+  }
+}
+
 export const addCategory = (name, parentId, isRoot) => {
   return {
     type: 'ADD_CATEGORY',

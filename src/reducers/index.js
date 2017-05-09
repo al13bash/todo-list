@@ -4,18 +4,21 @@ let initialState = {
       id: 0,
       title: "1st sdjfh",
       done: false,
+      description: '',
       categoryId: 0
     },
     {
       id: 1,
       title: "2nd sdhjfk",
       done: false,
+      description: '',
       categoryId: 0
     },
     {
       id: 2,
       title: "djsk sdhkf",
       done: false,
+      description: '',
       categoryId: 1
     }
   ],
@@ -75,6 +78,7 @@ const todo = (todo = {}, action, categoryId) => {
         id: action.id,
         title: action.text,
         done: false,
+        description: '',
         categoryId: categoryId
       }
     case 'REMOVE_TODO':
@@ -82,6 +86,16 @@ const todo = (todo = {}, action, categoryId) => {
         return false
       }
       return true
+    case 'EDIT_TODO':
+      if (todo.id === action.id) {
+        console.log("hey");
+        return Object.assign({}, todo, {
+          title: action.title,
+          done: action.done,
+          description: action.description,
+        });
+      }
+      return todo
     default:
       return todo
   }
@@ -202,6 +216,12 @@ const todoApp = (state = initialState, action) => {
       return Object.assign({}, state, { search: action.text });
     case 'RESET_SEARCH':
       return Object.assign({}, state, { search: '' });
+    case 'EDIT_TODO':
+      return Object.assign({}, state, {
+        todos: state.todos.map(t =>
+          todo(t, action)
+        )
+      })
     default:
       return state;
   }

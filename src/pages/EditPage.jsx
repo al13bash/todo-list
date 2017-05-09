@@ -3,8 +3,11 @@ import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
 import CategoryListContainer from '../containers/CategoryListContainer';
 import TodoEditForm from '../components/TodoEditForm/TodoEditForm';
+import * as actions from '../actions';
 
 const EditPage = props => {
+
+  console.log(props);
 
   const getTodoById = () => {
     for (let todo of props.todos) {
@@ -34,7 +37,10 @@ const EditPage = props => {
           <CategoryListContainer />
         </Paper>
         <Paper zDepth={2} style={style.paper}>
-          <TodoEditForm todo={todo}/>
+          <TodoEditForm
+            todo={todo}
+            editTodo={props.editTodo}
+          />
         </Paper>
       </div>
     </div>
@@ -49,6 +55,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    editTodo: (id, todo) => {
+      dispatch(actions.editTodo(id, todo.title, todo.description, todo.done));
+    }
   }
 }
 
