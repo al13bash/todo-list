@@ -156,7 +156,7 @@ const todoApp = (state = initialState, action) => {
       })
     case 'ADD_TODO':
       return Object.assign({}, state, {
-        todos: [...state.todos, todo({}, action, state.displayedCategoryId)]
+        todos: [todo({}, action, state.displayedCategoryId), ...state.todos]
       })
     case 'REMOVE_TODO':
       return Object.assign({}, state, {
@@ -167,7 +167,7 @@ const todoApp = (state = initialState, action) => {
     case 'ADD_CATEGORY':
       if (action.isRoot) {
         return Object.assign({}, state, {
-          categories : [...state.categories, getNewCategory(action)]
+          categories : [getNewCategory(action), ...state.categories]
         })
       }
       return Object.assign({}, state, {
