@@ -12,7 +12,7 @@ const MainPage = props => {
     paper: {
       padding: 20,
       margin: 20,
-      width: 400
+      width: 450
     },
     flex_center: {
       display: "flex",

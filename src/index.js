@@ -23,7 +23,12 @@ const store = createStore(
 const history = syncHistoryWithStore(browserHistory, store);
 
 const muiTheme = getMuiTheme({
+  icon: {
+    color: 'red',
+  }
 });
+
+console.log(muiTheme);
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(

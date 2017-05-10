@@ -20,7 +20,7 @@ const EditPage = props => {
     paper: {
       padding: 20,
       margin: 20,
-      width: 400
+      width: 450
     },
     flex: {
       display: "flex",

@@ -1,9 +1,9 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
-// import IconButton from 'material-ui/IconButton';
-// import ActionDelete from 'material-ui/svg-icons/action/delete';
-// import ContentAdd from 'material-ui/svg-icons/content/add';
-// import ImageEdit from 'material-ui/svg-icons/image/edit';
+import ActionDelete from 'material-ui/svg-icons/action/delete';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import ContentReply from 'material-ui/svg-icons/content/reply';
+import ImageEdit from 'material-ui/svg-icons/image/edit';
 import DialogFormContainer from '../../containers/DialogFormContainer';
 import { Link } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -20,22 +20,20 @@ class Category extends React.Component {
     }
 
     this.toggleCategory = this.toggleCategory.bind(this);
-    this.openDialog = this.openDialog.bind(this);
     this.renderDialogForm = this.renderDialogForm.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
     this.renderButtons = this.renderButtons.bind(this);
-    this.changeCategory = this.changeCategory.bind(this);
   }
 
   changeCategory() {
     this.props.changeTodosCategory(this.props.elem.id, this.props.todoId);
   }
 
-  openDialog(e) {
+  openDialog(type, e) {
     this.setState({
       openDialog: true,
       parentId: this.props.elem.id,
-      dialogType: e.target.name
+      dialogType: type
     });
   }
 
@@ -63,22 +61,14 @@ class Category extends React.Component {
     if (!this.props.edit)
       return(
         <div>
-          <button onClick={this.openDialog} name="edit">
-            edit
-          </button>
-          <button onClick={this.openDialog} name="delete">
-            del
-          </button>
-          <button onClick={this.openDialog} name="add">
-            add
-          </button>
-      </div>
+          <ImageEdit onClick={this.openDialog.bind(this, 'edit')} />
+          <ActionDelete onClick={this.openDialog.bind(this, 'delete')} />
+          <ContentAdd onClick={this.openDialog.bind(this, 'add')} />
+        </div>
       );
     else return(
       <div>
-        <button onClick={this.changeCategory} name="change">
-          change
-        </button>
+        <ContentReply onClick={this.changeCategory.bind(this)} />
       </div>
     );
   }
@@ -86,7 +76,7 @@ class Category extends React.Component {
   render() {
     const paper = {
       height: 40,
-      width: 260,
+      width: "100%",
       margin: "auto",
       display: "flex",
       alignItems:"center",
