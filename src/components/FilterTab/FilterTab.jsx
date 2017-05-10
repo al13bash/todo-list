@@ -2,7 +2,7 @@ import React from 'react';
 import Checkbox from 'material-ui/Checkbox';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import './FilterTab.css'
+import './FilterTab.sass'
 
 class FilterTab extends React.Component {
   constructor(props) {
