@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import Checkbox from 'material-ui/Checkbox';
+import RaisedButton from 'material-ui/RaisedButton';
 import {browserHistory} from 'react-router';
 
 class TodoEditForm extends React.Component {
@@ -42,8 +43,8 @@ class TodoEditForm extends React.Component {
     return(
       <form>
         <div>
-          <button onClick={this.saveChanges}>Save changes</button>
-          <button onClick={this.cancel}>Cancel</button>
+          <RaisedButton onClick={this.saveChanges} primary={true} label="Save changes" />
+          <RaisedButton onClick={this.cancel} label="Cancel" />
         </div>
         <TextField
           floatingLabelText="Title"

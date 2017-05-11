@@ -17,6 +17,7 @@ const CategoryList = (props) => {
           edit={props.edit}
           todoId={props.todoId}
           changeTodosCategory={props.changeTodosCategory}
+          displayedCategoryId={props.displayedCategoryId}
         />
         { elem.children.map((child) => createNode(child)) }
       </div>

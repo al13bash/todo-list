@@ -7,6 +7,9 @@ import ImageEdit from 'material-ui/svg-icons/image/edit';
 import DialogFormContainer from '../../containers/DialogFormContainer';
 import { Link } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import {browserHistory} from 'react-router';
+import classNames from 'classnames/bind';
+import './Category.sass';
 injectTapEventPlugin();
 
 class Category extends React.Component {
@@ -16,7 +19,8 @@ class Category extends React.Component {
     this.state = {
       openDialog: false,
       parentId: undefined,
-      dialogType: undefined
+      dialogType: undefined,
+      focused: false
     }
 
     this.toggleCategory = this.toggleCategory.bind(this);
@@ -41,8 +45,9 @@ class Category extends React.Component {
     this.setState({openDialog: false});
   }
 
-  toggleCategory() {
+  toggleCategory(e) {
     this.props.changeDisplayedCategoryId(this.props.elem.id);
+    browserHistory.push(`/${this.props.elem.id}`);
   }
 
   renderDialogForm() {
@@ -60,7 +65,7 @@ class Category extends React.Component {
   renderButtons() {
     if (!this.props.edit)
       return(
-        <div>
+        <div className="category__actions">
           <ImageEdit onClick={this.openDialog.bind(this, 'edit')} />
           <ActionDelete onClick={this.openDialog.bind(this, 'delete')} />
           <ContentAdd onClick={this.openDialog.bind(this, 'add')} />
@@ -74,30 +79,14 @@ class Category extends React.Component {
   }
 
   render() {
-    const paper = {
-      height: 40,
-      width: "100%",
-      margin: "auto",
-      display: "flex",
-      alignItems:"center",
-      justifyContent: "space-between",
-      padding: 15
-    }
-
-    const button = {
-      padding: 0
-    }
-
     return(
       <div>
         <Paper
-          style={paper}
-          zDepth={1}>
-          <Link
-            to={{ pathname:'/', query: { categoryId: this.props.elem.id } }}
-            onClick={this.toggleCategory}>
-            {this.props.elem.name}
-          </Link>
+          zDepth={1}
+          onClick={this.toggleCategory}
+          className={`category${this.props.displayedCategoryId === this.props.elem.id ? ' focused' : ''}`}
+        >
+          <div className="category__name">{this.props.elem.name}</div>
           {this.renderButtons()}
         </Paper>
         {this.state.openDialog && this.renderDialogForm()}

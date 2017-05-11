@@ -45,6 +45,7 @@
     "whatwg-fetch": "2.0.2"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "material-ui": "^0.17.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",

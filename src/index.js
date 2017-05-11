@@ -35,10 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
     <Provider store={store}>
       <MuiThemeProvider muiTheme={muiTheme}>
         <Router history={history}>
-          <Route path='/' component={App}>
-            <IndexRoute component={MainPage} />
-            <Route path='edit/:id' component={EditPage} />
-          </Route>
+          <Route path='/(:categoryId)' component={MainPage} />
+          <Route path='edit/:id' component={EditPage} />
         </Router>
       </MuiThemeProvider>
     </Provider>,
