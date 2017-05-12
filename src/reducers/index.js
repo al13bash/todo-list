@@ -1,3 +1,5 @@
+import undoable, { distinctState } from 'redux-undo';
+
 let initialState = {
   todos: [
     {
@@ -239,4 +241,8 @@ const todoApp = (state = initialState, action) => {
   }
 }
 
-export default todoApp;
+const undoableTodos = undoable(todoApp, {
+  filter: distinctState()
+})
+
+export default undoableTodos;

@@ -52,7 +52,7 @@ const EditPage = props => {
 
 const mapStateToProps = state => {
   return {
-    todos: state.todoApp.todos
+    todos: state.todoApp.present.todos
   }
 }
 

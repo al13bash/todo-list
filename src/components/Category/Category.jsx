@@ -8,7 +8,7 @@ import DialogFormContainer from '../../containers/DialogFormContainer';
 import { Link } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import {browserHistory} from 'react-router';
-import classNames from 'classnames/bind';
+import classNames from 'classnames';
 import './Category.sass';
 injectTapEventPlugin();
 
@@ -46,7 +46,6 @@ class Category extends React.Component {
   }
 
   toggleCategory(e) {
-    //this.props.changeDisplayedCategoryId(this.props.elem.id);
     browserHistory.push(`/category/${this.props.elem.id}`);
   }
 
@@ -79,12 +78,17 @@ class Category extends React.Component {
   }
 
   render() {
+    var categoryClasses = classNames({
+      'category': true,
+      'focused': this.props.displayedCategoryId === this.props.elem.id,
+      'done': this.props.elem.done
+    });
     return(
       <div>
         <Paper
           zDepth={1}
           onClick={this.toggleCategory}
-          className={`category${this.props.displayedCategoryId === this.props.elem.id ? ' focused' : ''}`}
+          className={categoryClasses}
         >
           <div className="category__name">{this.props.elem.name}</div>
           {this.renderButtons()}

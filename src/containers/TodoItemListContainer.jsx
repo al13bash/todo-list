@@ -4,10 +4,10 @@ import * as actions from '../actions';
 
 const mapStateToProps = state => {
   return {
-    todos: state.todoApp.todos,
-    displayedCategoryId: state.todoApp.displayedCategoryId,
-    showDoneTodos: state.todoApp.showDoneTodos,
-    search: state.todoApp.search
+    todos: state.todoApp.present.todos,
+    displayedCategoryId: state.todoApp.present.displayedCategoryId,
+    showDoneTodos: state.todoApp.present.showDoneTodos,
+    search: state.todoApp.present.search
   }
 }
 

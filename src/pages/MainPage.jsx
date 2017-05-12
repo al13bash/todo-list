@@ -7,12 +7,18 @@ import CategoryFormContainer from '../containers/CategoryFormContainer';
 import ProgressBarContainer from '../containers/ProgressBarContainer';
 import CategoryListContainer from '../containers/CategoryListContainer';
 import FilterTabContainer from '../containers/FilterTabContainer';
+import UndoRedo from '../containers/UndoRedo'
 import * as actions from '../actions';
 
 const MainPage = props => {
-  if (props.params.categoryId) {
-    props.changeDisplayedCategoryId(+props.params.categoryId);
+
+  const checkUrl = () => {
+    if (props.params.categoryId != props.displayedCategoryId) {
+      props.changeDisplayedCategoryId(props.params.categoryId);
+    }
   }
+
+  checkUrl();
 
   const style = {
     paper: {
@@ -35,6 +41,7 @@ const MainPage = props => {
       <div style={style.flex_between}>
         <h1>To-Do List</h1>
         <FilterTabContainer />
+        <UndoRedo />
       </div>
       <ProgressBarContainer />
       <div style={style.flex_center}>
@@ -53,14 +60,15 @@ const MainPage = props => {
 
 const mapStateToProps = state => {
   return {
-    todos: state.todoApp.todos
+    todos: state.todoApp.present.todos,
+    displayedCategoryId: state.todoApp.present.displayedCategoryId
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     changeDisplayedCategoryId: (id) => {
-      dispatch(actions.changeDisplayedCategoryId(id));
+      dispatch(actions.changeDisplayedCategoryId(+id));
     }
   }
 }
