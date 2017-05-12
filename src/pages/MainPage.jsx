@@ -1,13 +1,19 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
+import { connect } from 'react-redux';
 import TodoItemListContainer from '../containers/TodoItemListContainer';
 import TodoFormContainer from '../containers/TodoFormContainer';
 import CategoryFormContainer from '../containers/CategoryFormContainer';
 import ProgressBarContainer from '../containers/ProgressBarContainer';
 import CategoryListContainer from '../containers/CategoryListContainer';
 import FilterTabContainer from '../containers/FilterTabContainer';
+import * as actions from '../actions';
 
 const MainPage = props => {
+  if (props.params.categoryId) {
+    props.changeDisplayedCategoryId(+props.params.categoryId);
+  }
+
   const style = {
     paper: {
       padding: 20,
@@ -45,4 +51,18 @@ const MainPage = props => {
   );
 }
 
-export default MainPage;
+const mapStateToProps = state => {
+  return {
+    todos: state.todoApp.todos
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeDisplayedCategoryId: (id) => {
+      dispatch(actions.changeDisplayedCategoryId(id));
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

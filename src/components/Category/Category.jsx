@@ -46,8 +46,8 @@ class Category extends React.Component {
   }
 
   toggleCategory(e) {
-    this.props.changeDisplayedCategoryId(this.props.elem.id);
-    browserHistory.push(`/${this.props.elem.id}`);
+    //this.props.changeDisplayedCategoryId(this.props.elem.id);
+    browserHistory.push(`/category/${this.props.elem.id}`);
   }
 
   renderDialogForm() {
