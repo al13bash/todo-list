@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import MainPage from './pages/MainPage';
 import EditPage from './pages/EditPage';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router'
+import { Router, Route, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import todoApp from './reducers';
 import './index.css';

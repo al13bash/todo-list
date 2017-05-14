@@ -5,7 +5,6 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import ContentReply from 'material-ui/svg-icons/content/reply';
 import ImageEdit from 'material-ui/svg-icons/image/edit';
 import DialogFormContainer from '../../containers/DialogFormContainer';
-import { Link } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import {browserHistory} from 'react-router';
 import classNames from 'classnames';
@@ -46,7 +45,8 @@ class Category extends React.Component {
   }
 
   toggleCategory(e) {
-    browserHistory.push(`/category/${this.props.elem.id}`);
+    const location = Object.assign({}, browserHistory.getCurrentLocation());
+    browserHistory.push(`/category/${this.props.elem.id}?showDone=${location.query.showDone}`);
   }
 
   renderDialogForm() {

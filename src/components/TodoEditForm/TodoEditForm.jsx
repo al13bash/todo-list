@@ -36,7 +36,7 @@ class TodoEditForm extends React.Component {
   }
 
   cancel() {
-    browserHistory.push(`/category/${this.props.displayedCategoryId}`);
+    browserHistory.push(`/category/${this.props.displayedCategoryId}?showDone=${this.props.showDone}`);
   }
 
   render() {

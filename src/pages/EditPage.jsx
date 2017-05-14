@@ -44,6 +44,7 @@ const EditPage = props => {
             todo={todo}
             editTodo={props.editTodo}
             displayedCategoryId={props.displayedCategoryId}
+            showDone={props.showDoneTodos}
           />
         </Paper>
       </div>
@@ -54,7 +55,8 @@ const EditPage = props => {
 const mapStateToProps = state => {
   return {
     todos: state.todoApp.present.todos,
-    displayedCategoryId: state.todoApp.present.displayedCategoryId
+    displayedCategoryId: state.todoApp.present.displayedCategoryId,
+    showDoneTodos: state.todoApp.present.showDoneTodos
   }
 }
 

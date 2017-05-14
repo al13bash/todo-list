@@ -13,7 +13,7 @@ import * as actions from '../actions';
 const MainPage = props => {
 
   const checkUrl = () => {
-    if (props.params.categoryId != props.displayedCategoryId) {
+    if (props.params.categoryId !== props.displayedCategoryId) {
       props.changeDisplayedCategoryId(props.params.categoryId);
     }
   }
