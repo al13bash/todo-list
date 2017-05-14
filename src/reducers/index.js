@@ -83,11 +83,6 @@ const todo = (todo = {}, action, categoryId) => {
         description: '',
         categoryId: categoryId
       }
-    case 'REMOVE_TODO':
-      if(todo.categoryId === action.categoryId) {
-        return false
-      }
-      return true
     case 'EDIT_TODO':
       if (todo.id === action.id) {
         return Object.assign({}, todo, {
@@ -167,10 +162,9 @@ const todoApp = (state = initialState, action) => {
         todos: [todo({}, action, state.displayedCategoryId), ...state.todos]
       })
     case 'REMOVE_TODO':
+      let categoryIds = getCategoryChildren(getCategory(state.categories, action.categoryId));
       return Object.assign({}, state, {
-        todos: state.todos.filter(t =>
-          todo(t, action)
-        )
+        todos: state.todos.filter(todo => !categoryIds.includes(todo.categoryId))
       })
     case 'ADD_CATEGORY':
       if (action.isRoot) {
@@ -191,7 +185,6 @@ const todoApp = (state = initialState, action) => {
       })
     case 'REMOVE_CATEGORY':
       for (let item of state.categories) {
-        console.log(item.id, action.id);
         if (item.id === action.id) {
           return Object.assign({}, state, {
             categories: state.categories.filter(item => item.id !== action.id)
@@ -241,6 +234,31 @@ const todoApp = (state = initialState, action) => {
   }
 }
 
+const getCategory = (categories, id) => {
+  let result;
+  for (let category of categories) {
+    if (category.id !== id) {
+      result = getCategory(category.children, id);
+      if (result !== undefined) {
+        return result;
+      }
+    }
+    else {
+      return category;
+    }
+  }
+  return result;
+}
+
+const getCategoryChildren = (category) => {
+  let array = [];
+  for (let child of category.children) {
+    array = array.concat(getCategoryChildren(child));
+  }
+  array.push(category.id)
+  return array;
+}
+
 const undoableTodos = undoable(todoApp, {
   limit: 10,
   filter: excludeAction([
@@ -249,7 +267,8 @@ const undoableTodos = undoable(todoApp, {
     '@@router/LOCATION_CHANGE',
     'UPDATE_SEARCH_REQUEST',
     'RESET_SEARCH',
-    'TOGGLE_VISIBILITY_FILTER'
+    'TOGGLE_VISIBILITY_FILTER',
+    'REMOVE_CATEGORY'
   ]),
   initTypes: ['@@redux/INIT', '@@INIT']
 })
