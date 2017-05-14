@@ -1,4 +1,4 @@
-import undoable, { distinctState } from 'redux-undo';
+import undoable, { distinctState, excludeAction } from 'redux-undo';
 
 let initialState = {
   todos: [
@@ -242,7 +242,16 @@ const todoApp = (state = initialState, action) => {
 }
 
 const undoableTodos = undoable(todoApp, {
-  filter: distinctState()
+  limit: 10,
+  filter: excludeAction([
+    'TRIGGER_TODO_CHECK',
+    'CHANGE_DISPLAYED_CATEGORY_ID',
+    '@@router/LOCATION_CHANGE',
+    'UPDATE_SEARCH_REQUEST',
+    'RESET_SEARCH',
+    'TOGGLE_VISIBILITY_FILTER'
+  ]),
+  initTypes: ['@@redux/INIT', '@@INIT']
 })
 
 export default undoableTodos;

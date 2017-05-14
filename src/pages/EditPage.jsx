@@ -43,6 +43,7 @@ const EditPage = props => {
           <TodoEditForm
             todo={todo}
             editTodo={props.editTodo}
+            displayedCategoryId={props.displayedCategoryId}
           />
         </Paper>
       </div>
@@ -52,7 +53,8 @@ const EditPage = props => {
 
 const mapStateToProps = state => {
   return {
-    todos: state.todoApp.present.todos
+    todos: state.todoApp.present.todos,
+    displayedCategoryId: state.todoApp.present.displayedCategoryId
   }
 }
 
