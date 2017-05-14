@@ -2,6 +2,7 @@ import React from 'react';
 import Checkbox from 'material-ui/Checkbox';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import { browserHistory } from 'react-router';
 import './FilterTab.sass'
 
 class FilterTab extends React.Component {
@@ -29,6 +30,11 @@ class FilterTab extends React.Component {
 
   handleCheck() {
     this.props.toggleVisibilityFilter(!this.state.showDone);
+
+    const location = Object.assign({}, browserHistory.getCurrentLocation());
+    Object.assign(location.query, {showDone: !this.state.showDone});
+    browserHistory.push(location);
+
     this.setState({showDone: !this.state.showDone});
   }
 

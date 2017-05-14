@@ -7,7 +7,7 @@ import CategoryFormContainer from '../containers/CategoryFormContainer';
 import ProgressBarContainer from '../containers/ProgressBarContainer';
 import CategoryListContainer from '../containers/CategoryListContainer';
 import FilterTabContainer from '../containers/FilterTabContainer';
-import UndoRedo from '../containers/UndoRedo'
+import UndoRedo from '../containers/UndoRedo';
 import * as actions from '../actions';
 
 const MainPage = props => {
