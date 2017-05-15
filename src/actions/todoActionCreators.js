@@ -1,4 +1,4 @@
-let todoId = 3;
+export let todoId = 3;
 
 export const addTodo = (text, categoryId) => {
   return {

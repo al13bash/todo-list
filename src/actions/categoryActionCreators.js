@@ -1,4 +1,4 @@
-let categoryId = 5;
+export let categoryId = 5;
 
 export const addCategory = (name, parentId, isRoot) => {
   return {
@@ -17,13 +17,6 @@ export const removeCategory = (id) => {
   }
 }
 
-export const changeDisplayedCategoryId = (id) => {
-  return {
-    type: 'CHANGE_DISPLAYED_CATEGORY_ID',
-    id
-  }
-}
-
 export const editCategory = (id, name) => {
   return {
     type: 'CHANGE_CATEGORY_NAME',
@@ -32,9 +25,9 @@ export const editCategory = (id, name) => {
   }
 }
 
-export const triggerTodoCheck = (categoryId) => {
+export const changeDisplayedCategoryId = (id) => {
   return {
-    type: 'TRIGGER_TODO_CHECK',
-    categoryId
+    type: 'CHANGE_DISPLAYED_CATEGORY_ID',
+    id
   }
 }
