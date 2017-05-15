@@ -1,11 +1,12 @@
 let todoId = 3;
 let categoryId = 5;
 
-export const addTodo = (text) => {
+export const addTodo = (text, categoryId) => {
   return {
     type: 'ADD_TODO',
     id: todoId++,
-    text
+    text,
+    categoryId
   }
 }
 

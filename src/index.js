@@ -8,12 +8,13 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import { Router, Route, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
-import todoApp from './reducers';
+import todoApp, {initialState} from './reducers';
 import './index.css';
 
 const store = createStore(
   combineReducers({
     todoApp,
+    initialState,
     routing: routerReducer
   }),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -26,12 +27,7 @@ browserHistory.push(location);
 const history = syncHistoryWithStore(browserHistory, store);
 
 const muiTheme = getMuiTheme({
-  icon: {
-    color: 'red',
-  }
 });
-
-console.log(muiTheme);
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(

@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actions.updateSearchRequest(text));
     },
     resetSearch: () => {
-      dispatch(actions.updateSearchRequest());
+      dispatch(actions.resetSearch());
     }
   }
 }

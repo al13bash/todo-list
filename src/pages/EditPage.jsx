@@ -55,7 +55,7 @@ const EditPage = props => {
 const mapStateToProps = state => {
   return {
     todos: state.todoApp.present.todos,
-    displayedCategoryId: state.todoApp.present.displayedCategoryId,
+    displayedCategoryId: state.todoApp.present.displayedCategory.id,
     showDoneTodos: state.todoApp.present.showDoneTodos
   }
 }

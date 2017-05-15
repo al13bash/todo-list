@@ -61,7 +61,7 @@ const MainPage = props => {
 const mapStateToProps = state => {
   return {
     todos: state.todoApp.present.todos,
-    displayedCategoryId: state.todoApp.present.displayedCategoryId
+    displayedCategoryId: state.todoApp.present.displayedCategory.id
   }
 }
 
