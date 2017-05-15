@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import FilterTab from '../components/FilterTab/FilterTab';
-import * as actions from '../actions';
+import * as actions from '../actions/filterActionCreators';
 
 const mapStateToProps = state => { return {categories: state.todoApp.present.categories} }
 

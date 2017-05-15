@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CategoryList from '../components/CategoryList/CategoryList';
-import * as actions from '../actions';
+import * as actions from '../actions/categoryActionCreators';
 
 const mapStateToProps = state => {
   return {

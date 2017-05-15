@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import TodoForm from '../components/TodoForm/TodoForm';
-import * as actions from '../actions';
+import * as actions from '../actions/todoActionCreators';
 
 const mapStateToProps = state => {
   return {

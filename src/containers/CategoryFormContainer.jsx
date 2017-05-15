@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CategoryForm from '../components/CategoryForm/CategoryForm';
-import * as actions from '../actions';
+import * as actions from '../actions/categoryActionCreators';
 
 const mapStateToProps = state => { return {state} }
 

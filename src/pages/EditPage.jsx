@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
 import CategoryListContainer from '../containers/CategoryListContainer';
 import TodoEditForm from '../components/TodoEditForm/TodoEditForm';
-import * as actions from '../actions';
+import * as actions from '../actions/todoActionCreators';
 
 const EditPage = props => {
   const todoId = +props.routeParams.id;

@@ -1,20 +1,21 @@
 import { connect } from 'react-redux';
 import DialogForm from '../components/DialogForm/DialogForm';
-import * as actions from '../actions';
+import * as categoryActions from '../actions/categoryActionCreators';
+import * as todoActions from '../actions/todoActionCreators';
 
 const mapStateToProps = state => { return {state} }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     addCategory: (name, parentId, isRoot) => {
-      dispatch(actions.addCategory(name, parentId, isRoot));
+      dispatch(categoryActions.addCategory(name, parentId, isRoot));
     },
     editCategory: (id, name) => {
-      dispatch(actions.editCategory(id, name));
+      dispatch(categoryActions.editCategory(id, name));
     },
     removeCategory: (id) => {
-      dispatch(actions.removeTodo(id));
-      dispatch(actions.removeCategory(id));
+      dispatch(todoActions.removeTodo(id));
+      dispatch(categoryActions.removeCategory(id));
     }
   }
 }
