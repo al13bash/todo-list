@@ -1,31 +1,32 @@
-import categories, { categoriesInitialState } from './categoriesReducer'
+import { ADD_CATEGORY, REMOVE_CATEGORY, CHANGE_CATEGORY_NAME, TRIGGER_TODO_CHECK } from '../constants/actionTypes';
+import categories, { categoriesInitialState } from './categoriesReducer';
 
 describe('todos reducer', () => {
   it('should return the initial state', () => {
     expect(
-      categories(undefined, {})
-    ).toEqual( categoriesInitialState )
-  })  
+      categories(undefined, {}),
+    ).toEqual(categoriesInitialState);
+  });
 
   it('should handle ADD_CATEGORY', () => {
     expect(
       categories([], {
-        type: 'ADD_CATEGORY',
+        type: ADD_CATEGORY,
         id: 3,
         name: 'New category',
         parentId: undefined,
-        isRoot: true
-      })
+        isRoot: true,
+      }),
     ).toEqual(
       [
         {
           id: 3,
           name: 'New category',
           done: true,
-          children: []
-        }
-      ]
-    )
+          children: [],
+        },
+      ],
+    );
 
     expect(
       categories(
@@ -40,18 +41,18 @@ describe('todos reducer', () => {
                 id: 4,
                 name: 'Not new category',
                 done: true,
-                children: []
-              }
-            ]
-          }
+                children: [],
+              },
+            ],
+          },
         ],
         {
-          type: 'ADD_CATEGORY',
+          type: ADD_CATEGORY,
           id: 5,
           name: 'Child category',
           parentId: 3,
-          isRoot: false
-        })
+          isRoot: false,
+        }),
     ).toEqual(
       [
         {
@@ -64,19 +65,19 @@ describe('todos reducer', () => {
               id: 4,
               name: 'Not new category',
               done: true,
-              children: []
+              children: [],
             },
             {
               id: 5,
               name: 'Child category',
               done: true,
-              children: []
-            }
-          ]
-        }
-      ]
-    )
-  })
+              children: [],
+            },
+          ],
+        },
+      ],
+    );
+  });
 
   it('should handle REMOVE_CATEGORY', () => {
     expect(
@@ -92,23 +93,23 @@ describe('todos reducer', () => {
                 id: 4,
                 name: 'Not new category',
                 done: true,
-                children: []
+                children: [],
               },
               {
                 id: 5,
                 name: 'Child category',
                 done: true,
-                children: []
-              }
-            ]
-          }
+                children: [],
+              },
+            ],
+          },
         ],
         {
-          type: 'REMOVE_CATEGORY',
-          id: 3
-        }
-      )
-    ).toEqual( [] )
+          type: REMOVE_CATEGORY,
+          id: 3,
+        },
+      ),
+    ).toEqual([]);
 
     expect(
       categories(
@@ -123,22 +124,22 @@ describe('todos reducer', () => {
                 id: 4,
                 name: 'Not new category',
                 done: true,
-                children: []
+                children: [],
               },
               {
                 id: 5,
                 name: 'Child category',
                 done: true,
-                children: []
-              }
-            ]
-          }
+                children: [],
+              },
+            ],
+          },
         ],
         {
-          type: 'REMOVE_CATEGORY',
-          id: 4
-        }
-      )
+          type: REMOVE_CATEGORY,
+          id: 4,
+        },
+      ),
     ).toEqual(
       [
         {
@@ -151,13 +152,13 @@ describe('todos reducer', () => {
               id: 5,
               name: 'Child category',
               done: true,
-              children: []
-            }
-          ]
-        }
-      ]
-    )
-  })
+              children: [],
+            },
+          ],
+        },
+      ],
+    );
+  });
 
   it('should handle CHANGE_CATEGORY_NAME', () => {
     expect(
@@ -173,17 +174,17 @@ describe('todos reducer', () => {
                 id: 4,
                 name: 'Not new category',
                 done: true,
-                children: []
-              }
-            ]
-          }
+                children: [],
+              },
+            ],
+          },
         ],
         {
-          type: 'CHANGE_CATEGORY_NAME',
+          type: CHANGE_CATEGORY_NAME,
           id: 4,
-          name: 'new name'
-        }
-      )
+          name: 'new name',
+        },
+      ),
     ).toEqual(
       [
         {
@@ -196,11 +197,11 @@ describe('todos reducer', () => {
               id: 4,
               name: 'new name',
               done: true,
-              children: []
-            }
-          ]
-        }
-      ]
-    )
-  })
-})
+              children: [],
+            },
+          ],
+        },
+      ],
+    );
+  });
+});

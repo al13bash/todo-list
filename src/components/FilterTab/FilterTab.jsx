@@ -3,14 +3,14 @@ import Checkbox from 'material-ui/Checkbox';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { browserHistory } from 'react-router';
-import './FilterTab.sass'
+import './FilterTab.sass';
 
 class FilterTab extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showDone: true,
-      searchValue: ''
+      searchValue: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -20,26 +20,26 @@ class FilterTab extends React.Component {
 
   handleChange(e) {
     this.props.updateSearchRequest(e.target.value);
-    this.setState({searchValue: e.target.value});
+    this.setState({ searchValue: e.target.value });
   }
 
   handleReset() {
     this.props.resetSearch();
-    this.setState({searchValue: ''});
+    this.setState({ searchValue: '' });
   }
 
   handleCheck() {
     this.props.toggleVisibilityFilter(!this.state.showDone);
 
     const location = Object.assign({}, browserHistory.getCurrentLocation());
-    Object.assign(location.query, {showDone: !this.state.showDone});
+    Object.assign(location.query, { showDone: !this.state.showDone });
     browserHistory.push(location);
 
-    this.setState({showDone: !this.state.showDone});
+    this.setState({ showDone: !this.state.showDone });
   }
 
   render() {
-    return(
+    return (
       <div className="flex">
         <div>
           <Checkbox

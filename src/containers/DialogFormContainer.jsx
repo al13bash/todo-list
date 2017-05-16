@@ -1,28 +1,26 @@
 import { connect } from 'react-redux';
-import DialogForm from '../components/DialogForm/DialogForm';
+import DialogForm from '../components/DialogForm/DialogForm.jsx';
 import * as categoryActions from '../actions/categoryActionCreators';
 import * as todoActions from '../actions/todoActionCreators';
 
-const mapStateToProps = state => { return {state} }
+const mapStateToProps = state => ({ state });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addCategory: (name, parentId, isRoot) => {
-      dispatch(categoryActions.addCategory(name, parentId, isRoot));
-    },
-    editCategory: (id, name) => {
-      dispatch(categoryActions.editCategory(id, name));
-    },
-    removeCategory: (id) => {
-      dispatch(todoActions.removeTodo(id));
-      dispatch(categoryActions.removeCategory(id));
-    }
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  addCategory: (name, parentId, isRoot) => {
+    dispatch(categoryActions.addCategory(name, parentId, isRoot));
+  },
+  editCategory: (id, name) => {
+    dispatch(categoryActions.editCategory(id, name));
+  },
+  removeCategory: (id) => {
+    dispatch(todoActions.removeTodo(id));
+    dispatch(categoryActions.removeCategory(id));
+  },
+});
 
 const DialogFormContainer = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(DialogForm);
 
 export default DialogFormContainer;

@@ -1,26 +1,24 @@
 import { connect } from 'react-redux';
-import FilterTab from '../components/FilterTab/FilterTab';
+import FilterTab from '../components/FilterTab/FilterTab.jsx';
 import * as actions from '../actions/filterActionCreators';
 
-const mapStateToProps = state => { return {categories: state.todoApp.present.categories} }
+const mapStateToProps = state => ({ categories: state.todoApp.present.categories });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    toggleVisibilityFilter: (showDone) => {
-      dispatch(actions.toggleVisibilityFilter(showDone));
-    },
-    updateSearchRequest: (text) => {
-      dispatch(actions.updateSearchRequest(text));
-    },
-    resetSearch: () => {
-      dispatch(actions.resetSearch());
-    }
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  toggleVisibilityFilter: (showDone) => {
+    dispatch(actions.toggleVisibilityFilter(showDone));
+  },
+  updateSearchRequest: (text) => {
+    dispatch(actions.updateSearchRequest(text));
+  },
+  resetSearch: () => {
+    dispatch(actions.resetSearch());
+  },
+});
 
 const FilterTabContainer = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(FilterTab);
 
 export default FilterTabContainer;

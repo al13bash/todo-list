@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Category from '../Category/Category';
+import Category from '../Category/Category.jsx';
 
 const CategoryList = (props) => {
-
-  const createNode = elem => {
+  const createNode = (elem) => {
     const style = {
       paddingLeft: 25,
-      marginTop: 3
-    }
+      marginTop: 3,
+    };
 
-    return(
+    return (
       <div key={elem.id} style={style}>
         <Category
           elem={elem}
@@ -20,22 +19,22 @@ const CategoryList = (props) => {
           changeTodosCategory={props.changeTodosCategory}
           displayedCategoryId={props.displayedCategoryId}
         />
-        { elem.children.map((child) => createNode(child)) }
+        { elem.children.map(child => createNode(child)) }
       </div>
     );
-  }
+  };
 
-  return(
+  return (
     <div>
-      { props.categories.map((elem, index) => createNode(elem)) }
+      { props.categories.map(elem => createNode(elem)) }
     </div>
   );
-}
+};
 
 CategoryList.propTypes = {
   categories: PropTypes.array.isRequired,
   displayedCategoryId: PropTypes.number.isRequired,
-  changeDisplayedCategoryId: PropTypes.func.isRequired
+  changeDisplayedCategoryId: PropTypes.func.isRequired,
 };
 
 export default CategoryList;

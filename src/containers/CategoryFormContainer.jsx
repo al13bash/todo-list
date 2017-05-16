@@ -1,20 +1,18 @@
 import { connect } from 'react-redux';
-import CategoryForm from '../components/CategoryForm/CategoryForm';
+import CategoryForm from '../components/CategoryForm/CategoryForm.jsx';
 import * as actions from '../actions/categoryActionCreators';
 
-const mapStateToProps = state => { return {state} }
+const mapStateToProps = state => ({ state });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addCategory: (name, parentId, isRoot) => {
-      dispatch(actions.addCategory(name, parentId, isRoot));
-    }
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  addCategory: (name, parentId, isRoot) => {
+    dispatch(actions.addCategory(name, parentId, isRoot));
+  },
+});
 
 const CategoryFormContainer = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(CategoryForm);
 
 export default CategoryFormContainer;

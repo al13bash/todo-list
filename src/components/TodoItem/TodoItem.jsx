@@ -2,20 +2,19 @@ import React from 'react';
 import Checkbox from 'material-ui/Checkbox';
 import ImageEdit from 'material-ui/svg-icons/image/edit';
 import Paper from 'material-ui/Paper';
-import {browserHistory} from 'react-router';
+import { browserHistory } from 'react-router';
 import './TodoItem.sass';
 
 const TodoItem = (props) => {
-
-  const handleClick = e => {
+  const handleClick = () => {
     props.toggleTodo(props.todo);
-  }
+  };
 
   const redirectToEdit = () => {
     browserHistory.push(`/edit/${props.todo.id}`);
-  }
+  };
 
-  return(
+  return (
     <Paper className="todo" zDepth={1} >
       <Checkbox
         label={props.todo.title}
@@ -26,6 +25,6 @@ const TodoItem = (props) => {
       <ImageEdit onClick={redirectToEdit}/>
     </Paper>
   );
-}
+};
 
 export default TodoItem;

@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 class EditCategoryForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = { value: '' };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -15,20 +15,20 @@ class EditCategoryForm extends React.Component {
     e.preventDefault();
     this.props.closeDialog();
     this.props.editCategory(this.props.category.id, this.state.value);
-    this.setState({value: ''});
+    this.setState({ value: '' });
   }
 
   handleChange(e) {
-    this.setState({value: e.target.value});
+    this.setState({ value: e.target.value });
   }
 
   render() {
     const container = {
-      display: "flex",
-      justifyContent: "center"
-    }
+      display: 'flex',
+      justifyContent: 'center',
+    };
 
-    return(
+    return (
       <div style={container}>
         <form onSubmit={this.handleSubmit}>
           <TextField

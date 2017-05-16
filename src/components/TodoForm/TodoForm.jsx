@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 class AddForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = { value: '' };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -15,15 +15,15 @@ class AddForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.addTodo(this.state.value, this.props.displayedCategoryId);
-    this.setState({value: ''});
+    this.setState({ value: '' });
   }
 
   handleChange(e) {
-    this.setState({value: e.target.value});
+    this.setState({ value: e.target.value });
   }
 
   renderTodoForm() {
-    return(
+    return (
       <form onSubmit={this.handleSubmit}>
         <TextField
           hintText='Enter your todo'
@@ -40,10 +40,10 @@ class AddForm extends React.Component {
   }
 
   render() {
-    const container= {
-      display: "flex",
-      justifyContent: "center"
-    }
+    const container = {
+      display: 'flex',
+      justifyContent: 'center',
+    };
 
     return (
       <div style={container}>

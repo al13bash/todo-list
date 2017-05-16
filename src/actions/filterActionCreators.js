@@ -1,19 +1,15 @@
-export const toggleVisibilityFilter = (showDone) => {
-  return {
-    type: 'TOGGLE_VISIBILITY_FILTER',
-    showDone
-  }
-}
+import { TOGGLE_VISIBILITY_FILTER, UPDATE_SEARCH_REQUEST, RESET_SEARCH } from '../constants/actionTypes';
 
-export const updateSearchRequest = (text) => {
-  return {
-    type: 'UPDATE_SEARCH_REQUEST',
-    text
-  }
-}
+export const toggleVisibilityFilter = showDone => ({
+  type: TOGGLE_VISIBILITY_FILTER,
+  showDone,
+});
 
-export const resetSearch = () => {
-  return {
-    type: 'RESET_SEARCH'
-  }
-}
+export const updateSearchRequest = text => ({
+  type: UPDATE_SEARCH_REQUEST,
+  text,
+});
+
+export const resetSearch = () => ({
+  type: RESET_SEARCH,
+});

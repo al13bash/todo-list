@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
-import {browserHistory} from 'react-router';
+import { browserHistory } from 'react-router';
 
 class TodoEditForm extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class TodoEditForm extends React.Component {
     this.state = {
       title: this.props.todo.title,
       done: this.props.todo.done,
-      description: this.props.todo.description
+      description: this.props.todo.description,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -21,12 +21,12 @@ class TodoEditForm extends React.Component {
 
   handleChange(e) {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   }
 
   handleCheck() {
-    this.setState({ done: !this.state.done});
+    this.setState({ done: !this.state.done });
   }
 
   saveChanges(e) {
@@ -40,7 +40,7 @@ class TodoEditForm extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <form>
         <div>
           <RaisedButton onClick={this.saveChanges} primary={true} label="Save changes" />

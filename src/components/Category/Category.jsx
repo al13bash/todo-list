@@ -5,11 +5,12 @@ import ActionDelete from 'material-ui/svg-icons/action/delete';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ContentReply from 'material-ui/svg-icons/content/reply';
 import ImageEdit from 'material-ui/svg-icons/image/edit';
-import DialogFormContainer from '../../containers/DialogFormContainer';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import {browserHistory} from 'react-router';
+import { browserHistory } from 'react-router';
 import classNames from 'classnames';
+import DialogFormContainer from '../../containers/DialogFormContainer.jsx';
 import './Category.sass';
+
 injectTapEventPlugin();
 
 class Category extends React.Component {
@@ -20,8 +21,8 @@ class Category extends React.Component {
       openDialog: false,
       parentId: undefined,
       dialogType: undefined,
-      focused: false
-    }
+      focused: false,
+    };
 
     this.toggleCategory = this.toggleCategory.bind(this);
     this.renderDialogForm = this.renderDialogForm.bind(this);
@@ -33,25 +34,25 @@ class Category extends React.Component {
     this.props.changeTodosCategory(this.props.elem.id, this.props.todoId);
   }
 
-  openDialog(type, e) {
+  openDialog(type) {
     this.setState({
       openDialog: true,
       parentId: this.props.elem.id,
-      dialogType: type
+      dialogType: type,
     });
   }
 
   closeDialog() {
-    this.setState({openDialog: false});
+    this.setState({ openDialog: false });
   }
 
-  toggleCategory(e) {
+  toggleCategory() {
     const location = Object.assign({}, browserHistory.getCurrentLocation());
     browserHistory.push(`/category/${this.props.elem.id}?showDone=${location.query.showDone}`);
   }
 
   renderDialogForm() {
-    return(
+    return (
       <DialogFormContainer
         parentId={this.state.parentId}
         closeDialog={this.closeDialog}
@@ -63,15 +64,16 @@ class Category extends React.Component {
   }
 
   renderButtons() {
-    if (!this.props.edit)
-      return(
+    if (!this.props.edit) {
+      return (
         <div className="category__actions">
           <ImageEdit onClick={this.openDialog.bind(this, 'edit')} />
           <ActionDelete onClick={this.openDialog.bind(this, 'delete')} />
           <ContentAdd onClick={this.openDialog.bind(this, 'add')} />
         </div>
       );
-    else return(
+    }
+    return (
       <div>
         <ContentReply onClick={this.changeCategory.bind(this)} />
       </div>
@@ -79,12 +81,12 @@ class Category extends React.Component {
   }
 
   render() {
-    var categoryClasses = classNames({
-      'category': true,
-      'focused': this.props.displayedCategoryId === this.props.elem.id,
-      'done': this.props.elem.done
+    const categoryClasses = classNames({
+      category: true,
+      focused: this.props.displayedCategoryId === this.props.elem.id,
+      done: this.props.elem.done,
     });
-    return(
+    return (
       <div>
         <Paper
           zDepth={1}
@@ -105,13 +107,13 @@ Category.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
     done: PropTypes.bool,
-    children: PropTypes.array
+    children: PropTypes.array,
   }).isRequired,
   changeDisplayedCategoryId: PropTypes.func.isRequired,
   edit: PropTypes.bool,
   todoId: PropTypes.number,
   changeTodosCategory: PropTypes.func,
-  displayedCategoryId: PropTypes.number
+  displayedCategoryId: PropTypes.number,
 };
 
 export default Category;

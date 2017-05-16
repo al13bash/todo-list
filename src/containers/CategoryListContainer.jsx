@@ -1,21 +1,17 @@
 import { connect } from 'react-redux';
-import CategoryList from '../components/CategoryList/CategoryList';
+import CategoryList from '../components/CategoryList/CategoryList.jsx';
 import * as actions from '../actions/categoryActionCreators';
 
-const mapStateToProps = state => {
-  return {
-    categories: state.todoApp.present.categories,
-    displayedCategoryId: state.todoApp.present.displayedCategory.id
-  }
-}
+const mapStateToProps = state => ({
+  categories: state.todoApp.present.categories,
+  displayedCategoryId: state.todoApp.present.displayedCategory.id,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    changeDisplayedCategoryId: (id) => {
-      dispatch(actions.changeDisplayedCategoryId(Number(id)));
-    }
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  changeDisplayedCategoryId: (id) => {
+    dispatch(actions.changeDisplayedCategoryId(Number(id)));
+  },
+});
 
 const CategoryListContainer = connect(mapStateToProps, mapDispatchToProps)(CategoryList);
 
