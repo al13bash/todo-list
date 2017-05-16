@@ -39,7 +39,6 @@ const todoApp = reduceReducers(
         });
       }
       case REMOVE_TODO: {
-        console.log('KEKE', utils.getCategory(state.categories, action.categoryId));
         const categoryIds = utils.getCategoryChildren(
           utils.getCategory(state.categories, action.categoryId),
         );

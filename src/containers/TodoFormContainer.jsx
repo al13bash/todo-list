@@ -3,7 +3,6 @@ import TodoForm from '../components/TodoForm/TodoForm.jsx';
 import * as actions from '../actions/todoActionCreators';
 
 const mapStateToProps = state => ({
-  todos: state.todoApp.present.todos,
   displayedCategoryId: state.todoApp.present.displayedCategory.id,
 });
 

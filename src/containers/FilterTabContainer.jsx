@@ -2,7 +2,9 @@ import { connect } from 'react-redux';
 import FilterTab from '../components/FilterTab/FilterTab.jsx';
 import * as actions from '../actions/filterActionCreators';
 
-const mapStateToProps = state => ({ categories: state.todoApp.present.categories });
+const mapStateToProps = state => ({
+  showDoneTodos: state.todoApp.present.visibilityFilter,
+});
 
 const mapDispatchToProps = dispatch => ({
   toggleVisibilityFilter: (showDone) => {

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Checkbox from 'material-ui/Checkbox';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -9,7 +10,7 @@ class FilterTab extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showDone: true,
+      showDone: this.props.showDoneTodos,
       searchValue: '',
     };
 
@@ -57,5 +58,12 @@ class FilterTab extends React.Component {
     );
   }
 }
+
+FilterTab.propTypes = {
+  toggleVisibilityFilter: PropTypes.func.isRequired,
+  updateSearchRequest: PropTypes.func.isRequired,
+  resetSearch: PropTypes.func.isRequired,
+  showDoneTodos: PropTypes.bool.isRequired,
+};
 
 export default FilterTab;

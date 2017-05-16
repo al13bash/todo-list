@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -45,5 +46,16 @@ class EditCategoryForm extends React.Component {
     );
   }
 }
+
+EditCategoryForm.propTypes = {
+  editCategory: PropTypes.func.isRequired,
+  closeDialog: PropTypes.func.isRequired,
+  category: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    done: PropTypes.bool,
+    children: PropTypes.array,
+  }).isRequired,
+};
 
 export default EditCategoryForm;

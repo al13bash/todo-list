@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   changeDisplayedCategoryId: (id) => {
-    dispatch(actions.changeDisplayedCategoryId(Number(id)));
+    dispatch(actions.changeDisplayedCategoryId(+id));
   },
 });
 

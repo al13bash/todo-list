@@ -33,7 +33,7 @@ const CategoryList = (props) => {
 
 CategoryList.propTypes = {
   categories: PropTypes.array.isRequired,
-  displayedCategoryId: PropTypes.number.isRequired,
+  displayedCategoryId: PropTypes.number,
   changeDisplayedCategoryId: PropTypes.func.isRequired,
 };
 

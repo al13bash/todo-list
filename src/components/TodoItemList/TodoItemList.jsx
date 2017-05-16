@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TodoItem from '../TodoItem/TodoItem.jsx';
 import './TodoItemList.css';
 
@@ -30,6 +31,14 @@ const TodoItemList = (props) => {
         )}
     </div>
   );
+};
+
+TodoItemList.propTypes = {
+  todos: PropTypes.array.isRequired,
+  displayedCategoryId: PropTypes.number,
+  showDoneTodos: PropTypes.bool.isRequired,
+  search: PropTypes.string.isRequired,
+  toggleTodo: PropTypes.func.isRequired,
 };
 
 export default TodoItemList;

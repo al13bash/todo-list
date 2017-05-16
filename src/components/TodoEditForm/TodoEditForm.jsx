@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -70,5 +71,18 @@ class TodoEditForm extends React.Component {
     );
   }
 }
+
+TodoEditForm.propTypes = {
+  todoelem: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    done: PropTypes.bool.isRequired,
+    description: PropTypes.string.isRequired,
+    categoryId: PropTypes.number.isRequired,
+  }).isRequired,
+  editTodo: PropTypes.func.isRequired,
+  displayedCategoryId: PropTypes.number.isRequired,
+  showDone: PropTypes.bool.isRequired,
+};
 
 export default TodoEditForm;

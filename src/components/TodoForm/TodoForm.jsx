@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-class AddForm extends React.Component {
+class TodoForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = { value: '' };
@@ -53,4 +54,9 @@ class AddForm extends React.Component {
   }
 }
 
-export default AddForm;
+TodoForm.propTypes = {
+  addTodo: PropTypes.func.isRequired,
+  displayedCategoryId: PropTypes.number,
+};
+
+export default TodoForm;

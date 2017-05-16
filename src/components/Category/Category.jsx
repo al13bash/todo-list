@@ -32,6 +32,7 @@ class Category extends React.Component {
 
   changeCategory() {
     this.props.changeTodosCategory(this.props.elem.id, this.props.todoId);
+    this.props.changeDisplayedCategoryId(this.props.elem.id);
   }
 
   openDialog(type) {
@@ -47,8 +48,11 @@ class Category extends React.Component {
   }
 
   toggleCategory() {
-    const location = Object.assign({}, browserHistory.getCurrentLocation());
-    browserHistory.push(`/category/${this.props.elem.id}?showDone=${location.query.showDone}`);
+    if (!this.props.edit) {
+      const location = Object.assign({}, browserHistory.getCurrentLocation());
+      console.log('kklk');
+      browserHistory.push(`/category/${this.props.elem.id}?showDone=${location.query.showDone}`);
+    }
   }
 
   renderDialogForm() {
@@ -104,10 +108,10 @@ class Category extends React.Component {
 
 Category.propTypes = {
   elem: PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    done: PropTypes.bool,
-    children: PropTypes.array,
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    done: PropTypes.bool.isRequired,
+    children: PropTypes.array.isRequired,
   }).isRequired,
   changeDisplayedCategoryId: PropTypes.func.isRequired,
   edit: PropTypes.bool,

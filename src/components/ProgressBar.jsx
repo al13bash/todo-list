@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import LinearProgress from 'material-ui/LinearProgress';
 
 const ProgressBar = ({ categories }) => {
@@ -51,6 +52,10 @@ const ProgressBar = ({ categories }) => {
   return (
       <LinearProgress mode="determinate" value={calcProgressValue()} style={style}/>
   );
+};
+
+ProgressBar.propTypes = {
+  categories: PropTypes.array.isRequired,
 };
 
 export default ProgressBar;

@@ -16,7 +16,7 @@ class CategoryForm extends React.Component {
     e.preventDefault();
     if (this.props.modal) {
       this.props.closeDialog();
-      this.props.addCategory(this.state.value, Number(this.props.parentId), false);
+      this.props.addCategory(this.state.value, +this.props.parentId, false);
     } else {
       this.props.addCategory(this.state.value, undefined, true);
     }
