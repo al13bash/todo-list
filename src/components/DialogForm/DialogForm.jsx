@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import CategoryForm from '../CategoryForm/CategoryForm';
@@ -64,5 +65,21 @@ const DialogForm = (props) => {
     </div>
   );
 }
+
+DialogForm.propTypes = {
+  parentId: PropTypes.number.isRequired,
+  closeDialog: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  dialogType: PropTypes.string.isRequired,
+  category: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    done: PropTypes.bool,
+    children: PropTypes.array
+  }).isRequired,
+  addCategory: PropTypes.func.isRequired,
+  editCategory: PropTypes.func.isRequired,
+  removeCategory: PropTypes.func.isRequired
+};
 
 export default DialogForm;

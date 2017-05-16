@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-class AddForm extends React.Component {
+class CategoryForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {value: ''};
@@ -52,4 +53,11 @@ class AddForm extends React.Component {
   }
 }
 
-export default AddForm;
+CategoryForm.propTypes = {
+  addCategory: PropTypes.func.isRequired,
+  modal: PropTypes.bool,
+  parentId: PropTypes.number,
+  closeDialog: PropTypes.func
+};
+
+export default CategoryForm;

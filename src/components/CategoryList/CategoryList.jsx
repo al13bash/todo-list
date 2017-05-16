@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Category from '../Category/Category';
 
 const CategoryList = (props) => {
@@ -30,5 +31,11 @@ const CategoryList = (props) => {
     </div>
   );
 }
+
+CategoryList.propTypes = {
+  categories: PropTypes.array.isRequired,
+  displayedCategoryId: PropTypes.number.isRequired,
+  changeDisplayedCategoryId: PropTypes.func.isRequired
+};
 
 export default CategoryList;

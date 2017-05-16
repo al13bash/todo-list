@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -98,5 +99,19 @@ class Category extends React.Component {
     );
   }
 }
+
+Category.propTypes = {
+  elem: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    done: PropTypes.bool,
+    children: PropTypes.array
+  }).isRequired,
+  changeDisplayedCategoryId: PropTypes.func.isRequired,
+  edit: PropTypes.bool,
+  todoId: PropTypes.number,
+  changeTodosCategory: PropTypes.func,
+  displayedCategoryId: PropTypes.number
+};
 
 export default Category;
