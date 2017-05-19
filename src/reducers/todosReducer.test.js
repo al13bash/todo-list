@@ -150,7 +150,7 @@ describe('todos reducer', () => {
         ],
         {
           type: CHANGE_TODOS_CATEGORY,
-          todoId: 11,
+          todosId: 11,
           categoryId: 5,
         },
       ),

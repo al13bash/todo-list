@@ -1,13 +1,16 @@
 import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO, CHANGE_TODOS_CATEGORY, EDIT_TODO, TRIGGER_TODO_CHECK } from '../constants/actionTypes';
 import * as actions from './todoActionCreators';
 
+let todoId = 3;
+
 describe('Todo Actions', () => {
   it('should create an action to ADD a todo', () => {
     const text = 'New Todo';
     const categoryId = 0;
+    todoId += 1;
     const expectedAction = {
       type: ADD_TODO,
-      id: actions.todoId++,
+      id: todoId,
       text,
       categoryId,
     };
@@ -24,14 +27,14 @@ describe('Todo Actions', () => {
   });
 
   it('should create an action to change todos category', () => {
-    const todoId = 0;
+    const todosId = 0;
     const categoryId = 2;
     const expectedAction = {
       type: CHANGE_TODOS_CATEGORY,
-      todoId,
+      todosId,
       categoryId,
     };
-    expect(actions.changeTodosCategory(categoryId, todoId)).toEqual(expectedAction);
+    expect(actions.changeTodosCategory(categoryId, todosId)).toEqual(expectedAction);
   });
 
   it('should create an action to EDIT todo', () => {

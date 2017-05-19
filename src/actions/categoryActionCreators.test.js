@@ -1,14 +1,17 @@
 import { ADD_CATEGORY, REMOVE_CATEGORY, CHANGE_CATEGORY_NAME , CHANGE_DISPLAYED_CATEGORY_ID} from '../constants/actionTypes';
 import * as actions from './categoryActionCreators';
 
+let categoryId = 5;
+
 describe('Category Actions', () => {
   it('should create an action to ADD a category', () => {
     const name = 'Test Category';
     const parentId = 0;
     const isRoot = false;
+    categoryId += 1;
     const expectedAction = {
       type: ADD_CATEGORY,
-      id: actions.categoryId++,
+      id: categoryId,
       name,
       parentId,
       isRoot,
