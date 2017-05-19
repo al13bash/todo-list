@@ -4,6 +4,7 @@ import * as actions from '../actions/filterActionCreators';
 
 const mapStateToProps = state => ({
   showDoneTodos: state.todoApp.present.visibilityFilter,
+  search: state.todoApp.present.search,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -31,7 +31,7 @@ class Category extends React.Component {
   }
 
   changeCategory() {
-    this.props.changeTodosCategory(this.props.elem.id, this.props.todoId);
+    this.props.setPrevCategoryId(this.props.todo.categoryId);
     this.props.changeDisplayedCategoryId(this.props.elem.id);
   }
 
@@ -50,7 +50,6 @@ class Category extends React.Component {
   toggleCategory() {
     if (!this.props.edit) {
       const location = Object.assign({}, browserHistory.getCurrentLocation());
-      console.log('kklk');
       browserHistory.push(`/category/${this.props.elem.id}?showDone=${location.query.showDone}`);
     }
   }

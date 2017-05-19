@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
-import { browserHistory } from 'react-router';
 
 class TodoEditForm extends React.Component {
   constructor(props) {
@@ -17,7 +16,12 @@ class TodoEditForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
     this.saveChanges = this.saveChanges.bind(this);
-    this.cancel = this.cancel.bind(this);
+  }
+
+  componentWillMount() {
+    if (this.props.displayedCategoryId === undefined) {
+      this.props.changeDisplayedCategoryId(this.props.todo.categoryId);
+    }
   }
 
   handleChange(e) {
@@ -32,12 +36,7 @@ class TodoEditForm extends React.Component {
 
   saveChanges(e) {
     e.preventDefault();
-    this.props.editTodo(this.props.todo.id, this.state);
-    this.cancel();
-  }
-
-  cancel() {
-    browserHistory.push(`/category/${this.props.displayedCategoryId}?showDone=${this.props.showDone}`);
+    this.props.saveChanges(this.props.todo.id, this.state);
   }
 
   render() {
@@ -45,7 +44,7 @@ class TodoEditForm extends React.Component {
       <form>
         <div>
           <RaisedButton onClick={this.saveChanges} primary={true} label="Save changes" />
-          <RaisedButton onClick={this.cancel} label="Cancel" />
+          <RaisedButton onClick={this.props.cancel} label="Cancel" />
         </div>
         <TextField
           floatingLabelText="Title"
@@ -73,7 +72,7 @@ class TodoEditForm extends React.Component {
 }
 
 TodoEditForm.propTypes = {
-  todoelem: PropTypes.shape({
+  todo: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     done: PropTypes.bool.isRequired,
@@ -81,7 +80,7 @@ TodoEditForm.propTypes = {
     categoryId: PropTypes.number.isRequired,
   }).isRequired,
   editTodo: PropTypes.func.isRequired,
-  displayedCategoryId: PropTypes.number.isRequired,
+  displayedCategoryId: PropTypes.number,
   showDone: PropTypes.bool.isRequired,
 };
 

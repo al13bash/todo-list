@@ -22,12 +22,6 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
-//  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-
-const location = Object.assign({}, browserHistory.getCurrentLocation());
-Object.assign(location.query, { showDone: true });
-browserHistory.push(location);
-
 const history = syncHistoryWithStore(browserHistory, store);
 
 const muiTheme = getMuiTheme({

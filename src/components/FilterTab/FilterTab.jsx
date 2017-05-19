@@ -11,7 +11,7 @@ class FilterTab extends React.Component {
     super(props);
     this.state = {
       showDone: this.props.showDoneTodos,
-      searchValue: '',
+      searchValue: this.props.search,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -22,21 +22,28 @@ class FilterTab extends React.Component {
   handleChange(e) {
     this.props.updateSearchRequest(e.target.value);
     this.setState({ searchValue: e.target.value });
+
+    const location = Object.assign({}, browserHistory.getCurrentLocation());
+    Object.assign(location.query, { search: e.target.value });
+    browserHistory.push(location);
   }
 
   handleReset() {
     this.props.resetSearch();
     this.setState({ searchValue: '' });
+
+    const location = Object.assign({}, browserHistory.getCurrentLocation());
+    location.query = { showDone: location.query.showDone };
+    browserHistory.push(location);
   }
 
   handleCheck() {
     this.props.toggleVisibilityFilter(!this.state.showDone);
+    this.setState({ showDone: !this.state.showDone });
 
     const location = Object.assign({}, browserHistory.getCurrentLocation());
     Object.assign(location.query, { showDone: !this.state.showDone });
     browserHistory.push(location);
-
-    this.setState({ showDone: !this.state.showDone });
   }
 
   render() {

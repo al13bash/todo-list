@@ -3,19 +3,25 @@
 "BinaryExpression[operator='of']"] */
 import React from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import Paper from 'material-ui/Paper';
 import CategoryListContainer from '../containers/CategoryListContainer.jsx';
 import TodoEditForm from '../components/TodoEditForm/TodoEditForm.jsx';
 import * as actions from '../actions/todoActionCreators';
+import * as categoryActions from '../actions/categoryActionCreators';
 
 class EditPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       todo: undefined,
+      prevCategoryId: undefined,
     };
 
     this.getTodoById = this.getTodoById.bind(this);
+    this.setPrevCategoryId = this.setPrevCategoryId.bind(this);
+    this.saveChanges = this.saveChanges.bind(this);
+    this.cancel = this.cancel.bind(this);
   }
 
   componentWillMount() {
@@ -30,6 +36,22 @@ class EditPage extends React.Component {
       if (todo.id === todoId) return todo;
     }
     return undefined;
+  }
+
+  setPrevCategoryId(categoryId) {
+    this.setState({ prevCategoryId: categoryId });
+  }
+
+  saveChanges(id, todo) {
+    this.props.editTodo(id, todo);
+    this.props.changeTodosCategory(this.props.displayedCategoryId, id);
+    this.props.triggerTodoCheck(this.props.displayedCategoryId);
+    this.props.triggerTodoCheck(this.state.prevCategoryId);
+    this.cancel();
+  }
+
+  cancel() {
+    browserHistory.push(`/category/${this.props.displayedCategoryId}?showDone=${this.props.showDoneTodos}`);
   }
 
   render() {
@@ -52,8 +74,9 @@ class EditPage extends React.Component {
           <Paper zDepth={2} style={style.paper}>
             <CategoryListContainer
               edit
-              todoId={this.state.todo.id}
+              todo={this.state.todo}
               changeTodosCategory={this.props.changeTodosCategory}
+              setPrevCategoryId={this.setPrevCategoryId}
             />
           </Paper>
           <Paper zDepth={2} style={style.paper}>
@@ -61,7 +84,10 @@ class EditPage extends React.Component {
               todo={this.state.todo}
               editTodo={this.props.editTodo}
               displayedCategoryId={this.props.displayedCategoryId}
+              changeDisplayedCategoryId={this.props.changeDisplayedCategoryId}
               showDone={this.props.showDoneTodos}
+              saveChanges={this.saveChanges}
+              cancel={this.cancel}
             />
           </Paper>
         </div>
@@ -82,6 +108,12 @@ const mapDispatchToProps = dispatch => ({
   },
   changeTodosCategory: (categoryId, todoId) => {
     dispatch(actions.changeTodosCategory(categoryId, todoId));
+  },
+  changeDisplayedCategoryId: (id) => {
+    dispatch(categoryActions.changeDisplayedCategoryId(id));
+  },
+  triggerTodoCheck: (categoryId) => {
+    dispatch(actions.triggerTodoCheck(categoryId));
   },
 });
 

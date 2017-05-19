@@ -30,7 +30,7 @@ const todoApp = reduceReducers(
     switch (action.type) {
       case TRIGGER_TODO_CHECK: {
         let isDone = { done: false };
-        if (state.todos.filter(item => item.categoryId === state.displayedCategory.id)
+        if (state.todos.filter(item => item.categoryId === action.categoryId)
           .every(item => item.done === true)) {
           isDone = Object.assign({}, isDone, { done: true });
         }
