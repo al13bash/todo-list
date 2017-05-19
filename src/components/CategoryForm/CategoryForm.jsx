@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import './CategoryForm.sass';
 
 class CategoryForm extends React.Component {
   constructor(props) {
@@ -16,8 +17,10 @@ class CategoryForm extends React.Component {
     e.preventDefault();
     if (this.props.modal) {
       this.props.closeDialog();
-      this.props.addCategory(this.state.value, +this.props.parentId, false);
-    } else {
+      if (this.state.value !== '') {
+        this.props.addCategory(this.state.value, +this.props.parentId, false);
+      }
+    } else if (this.state.value !== '' && !this.props.modal) {
       this.props.addCategory(this.state.value, undefined, true);
     }
     this.setState({ value: '' });
@@ -28,26 +31,21 @@ class CategoryForm extends React.Component {
   }
 
   render() {
-    const container = {
-      width: '100%',
-      display: 'flex',
-      justifyContent: 'center',
-    };
-
     return (
-      <div style={container}>
-        <form onSubmit={this.handleSubmit}>
-          <TextField
-            hintText='Enter category'
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-          <RaisedButton
-            label="Add"
-            primary={true}
-            type="submit" />
-        </form>
-      </div>
+      <form
+        onSubmit={this.handleSubmit}
+        className="form_container">
+        <TextField
+          hintText='Enter category'
+          value={this.state.value}
+          onChange={this.handleChange}
+          className="input"
+        />
+        <RaisedButton
+          label="Add"
+          primary={true}
+          type="submit" />
+      </form>
     );
   }
 }

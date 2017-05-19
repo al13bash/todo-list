@@ -5,8 +5,8 @@ import Category from '../Category/Category.jsx';
 const CategoryList = (props) => {
   const createNode = (elem) => {
     const style = {
-      paddingLeft: 25,
-      marginTop: 3,
+      paddingLeft: 20,
+      marginTop: 2,
     };
 
     return (

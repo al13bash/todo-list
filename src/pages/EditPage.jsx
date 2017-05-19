@@ -1,4 +1,3 @@
-/* eslint class-methods-use-this: ["error", { "exceptMethods": ["componentWillMount"] }] */
 /* eslint no-restricted-syntax: ["error", "WithStatement",
 "BinaryExpression[operator='of']"] */
 import React from 'react';
@@ -9,6 +8,7 @@ import CategoryListContainer from '../containers/CategoryListContainer.jsx';
 import TodoEditForm from '../components/TodoEditForm/TodoEditForm.jsx';
 import * as actions from '../actions/todoActionCreators';
 import * as categoryActions from '../actions/categoryActionCreators';
+import './Page.sass';
 
 class EditPage extends React.Component {
   constructor(props) {
@@ -55,23 +55,13 @@ class EditPage extends React.Component {
   }
 
   render() {
-    const style = {
-      paper: {
-        padding: 20,
-        margin: 20,
-        width: 450,
-      },
-      flex: {
-        display: 'flex',
-        justifyContent: 'center',
-      },
-    };
-
     return (
-      <div>
-        <h1>{ this.state.todo.title }</h1>
-        <div style={style.flex}>
-          <Paper zDepth={2} style={style.paper}>
+      <div className="container">
+        <div className="header">
+          <h1>{ this.state.todo.title }</h1>
+        </div>
+        <div className="content_container">
+          <Paper zDepth={2} className="page">
             <CategoryListContainer
               edit
               todo={this.state.todo}
@@ -79,7 +69,7 @@ class EditPage extends React.Component {
               setPrevCategoryId={this.setPrevCategoryId}
             />
           </Paper>
-          <Paper zDepth={2} style={style.paper}>
+          <Paper zDepth={2} className="page">
             <TodoEditForm
               todo={this.state.todo}
               editTodo={this.props.editTodo}

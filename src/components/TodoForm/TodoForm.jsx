@@ -1,7 +1,9 @@
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["componentWillReceiveProps"] }] */
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import '../CategoryForm/CategoryForm.sass';
 
 class TodoForm extends React.Component {
   constructor(props) {
@@ -25,11 +27,14 @@ class TodoForm extends React.Component {
 
   renderTodoForm() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form
+        onSubmit={this.handleSubmit}
+        className="form_container">
         <TextField
           hintText='Enter your todo'
           value={this.state.value}
           onChange={this.handleChange}
+          className="input"
         />
         <RaisedButton
           label="Add"
@@ -41,14 +46,13 @@ class TodoForm extends React.Component {
   }
 
   render() {
-    const container = {
-      display: 'flex',
-      justifyContent: 'center',
-    };
-
     return (
-      <div style={container}>
-        { this.props.displayedCategoryId !== undefined && this.renderTodoForm() }
+      <div>
+        {
+          this.props.displayedCategoryId !== undefined &&
+          !isNaN(this.props.displayedCategoryId) &&
+          this.renderTodoForm()
+        }
       </div>
     );
   }

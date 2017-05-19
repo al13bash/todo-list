@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import { browserHistory } from 'react-router';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import CategoryForm from '../CategoryForm/CategoryForm.jsx';
 import EditCategoryForm from '../EditCategoryForm/EditCategoryForm.jsx';
+import './DialogForm.sass';
 
 const DialogForm = (props) => {
   let actions = [];
@@ -12,6 +14,11 @@ const DialogForm = (props) => {
   const removeCategory = () => {
     props.removeCategory(props.category.id);
     props.closeDialog();
+
+    const location = Object.assign({}, browserHistory.getCurrentLocation());
+    location.pathname = '/';
+    Object.assign(location.query, { showDone: props.showDoneTodos });
+    browserHistory.push(location);
   };
 
   const deleteConfirmation = () => {
@@ -36,8 +43,13 @@ const DialogForm = (props) => {
       <Dialog
         modal={false}
         open={props.isOpen}
-        actions={actions} >
-        <NavigationClose onClick={props.closeDialog}/>
+        actions={actions}
+        contentStyle={{ width: 450 }}
+      >
+        <NavigationClose
+          onClick={props.closeDialog}
+          className="close_button"
+        />
         {(() => {
           switch (props.dialogType) {
             case 'add':

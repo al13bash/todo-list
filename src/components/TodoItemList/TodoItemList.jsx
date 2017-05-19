@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TodoItem from '../TodoItem/TodoItem.jsx';
-import './TodoItemList.css';
 
 const TodoItemList = (props) => {
   const showDoneFilter = todo => (props.showDoneTodos || (!props.showDoneTodos && !todo.done));

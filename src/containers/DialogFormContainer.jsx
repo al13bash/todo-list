@@ -3,7 +3,9 @@ import DialogForm from '../components/DialogForm/DialogForm.jsx';
 import * as categoryActions from '../actions/categoryActionCreators';
 import * as todoActions from '../actions/todoActionCreators';
 
-const mapStateToProps = state => ({ state });
+const mapStateToProps = state => ({
+  showDoneTodos: state.todoApp.present.visibilityFilter,
+});
 
 const mapDispatchToProps = dispatch => ({
   addCategory: (name, parentId, isRoot) => {

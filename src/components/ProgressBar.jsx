@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import LinearProgress from 'material-ui/LinearProgress';
 
 const ProgressBar = ({ categories }) => {
-  const style = {
-    marginTop: 20,
-  };
-
   const categoryAmount = (category) => {
     if (category.children.length === 0) { return 1; }
     let counter = 0;
@@ -14,10 +10,6 @@ const ProgressBar = ({ categories }) => {
       counter += categoryAmount(item);
     });
     return counter + 1;
-    // for (const item of category.children) {
-    //   counter += categoryAmount(item);
-    // }
-    // return counter + 1;
   };
 
   const doneCategoryAmount = (category) => {
@@ -25,9 +17,6 @@ const ProgressBar = ({ categories }) => {
     category.children.forEach((item) => {
       counter += doneCategoryAmount(item);
     });
-    // for (const item of category.children) {
-    //   counter += doneCategoryAmount(item);
-    // }
     if (category.done === true) { return counter + 1; }
     return counter;
   };
@@ -37,9 +26,6 @@ const ProgressBar = ({ categories }) => {
     categories.forEach((i) => {
       counter += callback(i);
     });
-    // for (const i of categories) {
-    //   counter += callback(i);
-    // }
     return counter;
   };
 
@@ -50,7 +36,7 @@ const ProgressBar = ({ categories }) => {
   };
 
   return (
-      <LinearProgress mode="determinate" value={calcProgressValue()} style={style}/>
+      <LinearProgress mode="determinate" value={calcProgressValue()} />
   );
 };
 

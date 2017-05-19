@@ -1,3 +1,4 @@
+/* eslint no-restricted-syntax: ["error", "WithStatement", "BinaryExpression[operator='of']"] */
 import { ADD_CATEGORY, REMOVE_CATEGORY, CHANGE_CATEGORY_NAME, TRIGGER_TODO_CHECK } from '../constants/actionTypes';
 import * as utils from './utils/categoryUtils';
 
@@ -45,19 +46,12 @@ const categories = (state = categoriesInitialState, action) => {
       }
       return state.map(c => utils.addCategoryToChild(c, action));
     case REMOVE_CATEGORY:
-      state.forEach((item) => {
+      for (const item of state) {
         if (item.id === action.id) {
-          return state.filter(c => c.id !== action.id);
+          return state.filter(i => i.id !== action.id);
         }
-        return undefined;
-      });
+      }
       return state.map(c => utils.deleteChildCategory(c, action));
-      // for (const item of state) {
-      //   if (item.id === action.id) {
-      //     return state.filter(item => item.id !== action.id);
-      //   }
-      // }
-      // return state.map(c => utils.deleteChildCategory(c, action));
 
     case CHANGE_CATEGORY_NAME:
       return state.map(c => utils.editCategoryName(c, action));

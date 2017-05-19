@@ -1,7 +1,4 @@
-/* eslint class-methods-use-this: ["error", { "exceptMethods": ["componentWillMount",
-"render", "componentWillUpdate", "componentWillMount"] }] */
-/* eslint no-restricted-syntax: ["error", "WithStatement",
-"BinaryExpression[operator='of']"] */
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["render"] }] */
 import React from 'react';
 import Paper from 'material-ui/Paper';
 import { connect } from 'react-redux';
@@ -15,40 +12,34 @@ import FilterTabContainer from '../containers/FilterTabContainer.jsx';
 import UndoRedo from '../containers/UndoRedo.jsx';
 import * as actions from '../actions/categoryActionCreators';
 import * as filterActions from '../actions/filterActionCreators';
+import './Page.sass';
 
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.checkCategoryId = this.checkCategoryId.bind(this);
-    this.checkShowDone = this.checkShowDone.bind(this);
-    this.checkSearch = this.checkSearch.bind(this);
+    this.checkQueryParams = this.checkQueryParams.bind(this);
   }
 
   componentWillMount() {
-    this.checkShowDone(this.props.location.query.showDone === 'true');
-    this.checkSearch(this.props.location.query.search);
+    this.checkQueryParams(this.props.location.query.showDone === 'true',
+      this.props.location.query.search);
   }
 
   componentWillReceiveProps(nextProps) {
     this.checkCategoryId(nextProps.params.categoryId);
   }
 
-  checkSearch(seachStr) {
-    const location = Object.assign({}, browserHistory.getCurrentLocation());
-    if (seachStr !== this.props.search && seachStr !== undefined) {
-      this.props.updateSearchRequest(seachStr);
-    }
-    Object.assign(location.query, { search: seachStr });
-    browserHistory.push(location);
-  }
-
-  checkShowDone(isDoneShowed) {
+  checkQueryParams(isDoneShowed, seachStr) {
     const location = Object.assign({}, browserHistory.getCurrentLocation());
     if (isDoneShowed !== this.props.showDoneTodos) {
       this.props.toggleVisibilityFilter(isDoneShowed);
     }
-    Object.assign(location.query, { showDone: isDoneShowed });
+    if (seachStr !== this.props.search && seachStr !== undefined) {
+      this.props.updateSearchRequest(seachStr);
+    }
+    Object.assign(location.query, { showDone: isDoneShowed }, { search: seachStr });
     browserHistory.push(location);
   }
 
@@ -59,37 +50,26 @@ class MainPage extends React.Component {
   }
 
   render() {
-    const style = {
-      paper: {
-        padding: 20,
-        margin: 20,
-        width: 450,
-      },
-      flex_center: {
-        display: 'flex',
-        justifyContent: 'center',
-      },
-      flex_between: {
-        display: 'flex',
-        justifyContent: 'space-between',
-      },
-    };
     return (
-      <div>
-        <div style={style.flex_between}>
+      <div className="container">
+        <div className="header">
           <h1>To-Do List</h1>
           <FilterTabContainer />
           <UndoRedo />
         </div>
         <ProgressBarContainer />
-        <div style={style.flex_center}>
-          <Paper zDepth={2} style={style.paper}>
+        <div className="content_container">
+          <Paper zDepth={2} className="page">
             <CategoryFormContainer />
-            <CategoryListContainer />
+            <div className="list">
+              <CategoryListContainer />
+            </div>
           </Paper>
-          <Paper zDepth={2} style={style.paper}>
+          <Paper zDepth={2} className="page">
             <TodoFormContainer />
-            <TodoItemListContainer />
+            <div className="list">
+              <TodoItemListContainer />
+            </div>
           </Paper>
         </div>
       </div>

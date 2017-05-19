@@ -21,7 +21,7 @@ const TodoItem = (props) => {
         label={props.todo.title}
         checked={props.todo.done}
         onCheck={handleClick}
-        className="todo__checkbox"
+        className="todo_checkbox"
       />
       <ImageEdit onClick={redirectToEdit}/>
     </Paper>
