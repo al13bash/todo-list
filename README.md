@@ -6,7 +6,7 @@ This application provides an opportunity to split your todos into categories. Ca
 When you click on category you will see its todos. Also you can add, change or delete category.
 There is a propgress bar which shows what percentage of the categories are done. Completed category is a category in which all tasks are done or if it’s empty.
 
-![untitled](https://cloud.githubusercontent.com/assets/12400216/26261703/e42d32ac-3cda-11e7-9ca6-5a4b0f348696.png)
+![screenshot](https://cloud.githubusercontent.com/assets/12400216/26274173/200733c4-3d4c-11e7-8491-de7f7a72924a.png)
 
 ## Getting Started
 
