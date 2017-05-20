@@ -17,8 +17,10 @@ class TodoForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.addTodo(this.state.value, this.props.displayedCategoryId);
-    this.setState({ value: '' });
+    if (this.state.value !== '') {
+      this.props.addTodo(this.state.value, this.props.displayedCategoryId);
+      this.setState({ value: '' });
+    }
   }
 
   handleChange(e) {
