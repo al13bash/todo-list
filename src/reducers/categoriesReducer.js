@@ -5,29 +5,29 @@ import * as utils from './utils/categoryUtils';
 export const categoriesInitialState = [
   {
     id: 0,
-    name: 'CAT 1',
+    name: 'Work',
     done: false,
     children: [{
       id: 2,
-      name: 'CAT 1-1',
+      name: 'Project 1',
       done: true,
       children: [{
         id: 4,
-        name: 'CAT 1-1-1',
+        name: 'Frontend',
         done: true,
         children: [],
       }],
     },
     {
       id: 3,
-      name: 'CAT 1-2',
+      name: 'Project 2',
       done: true,
       children: [],
     }],
   },
   {
     id: 1,
-    name: 'CAT 2',
+    name: 'Travel',
     done: false,
     children: [],
   },

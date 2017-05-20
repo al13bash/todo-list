@@ -12,7 +12,7 @@ const CategoryList = (props) => {
     return (
       <div key={elem.id} style={style}>
         <Category
-          elem={elem}
+          category={elem}
           changeDisplayedCategoryId={props.changeDisplayedCategoryId}
           edit={props.edit}
           todo={props.todo}
@@ -33,9 +33,18 @@ const CategoryList = (props) => {
 };
 
 CategoryList.propTypes = {
+  todo: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    done: PropTypes.bool.isRequired,
+    description: PropTypes.string.isRequired,
+    categoryId: PropTypes.number.isRequired,
+  }),
+  edit: PropTypes.bool,
   categories: PropTypes.array.isRequired,
   displayedCategoryId: PropTypes.number,
   changeDisplayedCategoryId: PropTypes.func.isRequired,
+  setPrevCategoryId: PropTypes.func,
 };
 
 export default CategoryList;

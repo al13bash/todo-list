@@ -32,13 +32,13 @@ class Category extends React.Component {
 
   changeCategory() {
     this.props.setPrevCategoryId(this.props.todo.categoryId);
-    this.props.changeDisplayedCategoryId(this.props.elem.id);
+    this.props.changeDisplayedCategoryId(this.props.category.id);
   }
 
   openDialog(type) {
     this.setState({
       openDialog: true,
-      parentId: this.props.elem.id,
+      parentId: this.props.category.id,
       dialogType: type,
     });
   }
@@ -50,7 +50,7 @@ class Category extends React.Component {
   toggleCategory() {
     if (!this.props.edit) {
       const location = Object.assign({}, browserHistory.getCurrentLocation());
-      browserHistory.push(`/category/${this.props.elem.id}?showDone=${location.query.showDone}`);
+      browserHistory.push(`/category/${this.props.category.id}?showDone=${location.query.showDone}`);
     }
   }
 
@@ -61,7 +61,7 @@ class Category extends React.Component {
         closeDialog={this.closeDialog}
         isOpen={this.state.openDialog}
         dialogType={this.state.dialogType}
-        category={this.props.elem}
+        category={this.props.category}
       />
     );
   }
@@ -86,8 +86,8 @@ class Category extends React.Component {
   render() {
     const categoryClasses = classNames({
       category: true,
-      focused: this.props.displayedCategoryId === this.props.elem.id,
-      done: this.props.elem.done,
+      focused: this.props.displayedCategoryId === this.props.category.id,
+      done: this.props.category.done,
     });
     return (
       <div>
@@ -96,7 +96,7 @@ class Category extends React.Component {
           onClick={this.toggleCategory}
           className={categoryClasses}
         >
-          <div className="category__name">{this.props.elem.name}</div>
+          <div className="category__name">{this.props.category.name}</div>
           {this.renderButtons()}
         </Paper>
         {this.state.openDialog && this.renderDialogForm()}
@@ -106,7 +106,7 @@ class Category extends React.Component {
 }
 
 Category.propTypes = {
-  elem: PropTypes.shape({
+  category: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     done: PropTypes.bool.isRequired,
@@ -117,6 +117,7 @@ Category.propTypes = {
   todoId: PropTypes.number,
   changeTodosCategory: PropTypes.func,
   displayedCategoryId: PropTypes.number,
+  setPrevCategoryId: PropTypes.func,
 };
 
 export default Category;

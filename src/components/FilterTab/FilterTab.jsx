@@ -5,6 +5,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { browserHistory } from 'react-router';
 import './FilterTab.sass';
+import '../CategoryForm/CategoryForm.sass';
 
 class FilterTab extends React.Component {
   constructor(props) {
@@ -57,8 +58,13 @@ class FilterTab extends React.Component {
             className="checkbox"
           />
         </div>
-        <div>
-          <TextField hintText="Search" value={this.state.searchValue} onChange={this.handleChange}/>
+        <div className="form_container">
+          <TextField
+            hintText="Search"
+            value={this.state.searchValue}
+            onChange={this.handleChange}
+            className="input"
+          />
           <RaisedButton label="Reset" secondary={true} onClick={this.handleReset}/>
         </div>
       </div>

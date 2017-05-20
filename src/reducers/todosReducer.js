@@ -3,21 +3,21 @@ import { ADD_TODO, TOGGLE_TODO, CHANGE_TODOS_CATEGORY, EDIT_TODO } from '../cons
 export const todosInitialState = [
   {
     id: 0,
-    title: '1st sdjfh',
+    title: 'Drink coffee',
     done: false,
     description: '',
     categoryId: 0,
   },
   {
     id: 1,
-    title: '2nd sdhjfk',
+    title: 'Eat cookies',
     done: false,
     description: '',
     categoryId: 0,
   },
   {
     id: 2,
-    title: 'djsk sdhkf',
+    title: 'Go to Batumi',
     done: false,
     description: '',
     categoryId: 1,

@@ -62,12 +62,14 @@ class EditPage extends React.Component {
         </div>
         <div className="content_container">
           <Paper zDepth={2} className="page">
-            <CategoryListContainer
-              edit
-              todo={this.state.todo}
-              changeTodosCategory={this.props.changeTodosCategory}
-              setPrevCategoryId={this.setPrevCategoryId}
-            />
+            <div className="list">
+              <CategoryListContainer
+                edit
+                todo={this.state.todo}
+                changeTodosCategory={this.props.changeTodosCategory}
+                setPrevCategoryId={this.setPrevCategoryId}
+              />
+            </div>
           </Paper>
           <Paper zDepth={2} className="page">
             <TodoEditForm

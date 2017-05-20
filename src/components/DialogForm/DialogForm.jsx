@@ -92,6 +92,7 @@ DialogForm.propTypes = {
   addCategory: PropTypes.func.isRequired,
   editCategory: PropTypes.func.isRequired,
   removeCategory: PropTypes.func.isRequired,
+  showDoneTodos: PropTypes.bool.isRequired,
 };
 
 export default DialogForm;

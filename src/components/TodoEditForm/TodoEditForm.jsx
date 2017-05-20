@@ -79,9 +79,10 @@ TodoEditForm.propTypes = {
     description: PropTypes.string.isRequired,
     categoryId: PropTypes.number.isRequired,
   }).isRequired,
-  editTodo: PropTypes.func.isRequired,
   displayedCategoryId: PropTypes.number,
-  showDone: PropTypes.bool.isRequired,
+  saveChanges: PropTypes.func.isRequired,
+  cancel: PropTypes.func.isRequired,
+  changeDisplayedCategoryId: PropTypes.func.isRequired,
 };
 
 export default TodoEditForm;
